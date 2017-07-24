@@ -73,6 +73,7 @@ Outside of the managed stack.
 Perform the default logging action.
 #+BEGIN_SRC haskell :tangle no :noweb-ref imports
   import XMonad.Hooks.DynamicLog
+  import System.IO (hPutStrLn)
 #+END_SRC
 #+BEGIN_SRC haskell
   myLogHook h = defaultPP { ppOutput = hPutStrLn h }
@@ -81,7 +82,6 @@ Perform the default logging action.
 Use XMobar as a dock at the top of the screen
 #+BEGIN_SRC haskell :tangle no :noweb-ref imports
   import XMonad.Util.Run (spawnPipe)
-  import System.IO (hPutStrLn)
 #+END_SRC
 #+BEGIN_SRC haskell
   main = do
