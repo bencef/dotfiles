@@ -84,9 +84,7 @@ Use XMobar as a dock at the top of the screen
   import XMonad.Util.Run (spawnPipe)
 #+END_SRC
 #+BEGIN_SRC haskell
-  main = do
-    barPipe <- spawnPipe "xmobar --dock --top"
-    xmonad $ docks $ defaults barPipe
+  dock = spawnPipe "xmobar --dock --top"
 #+END_SRC
 ** Entry point
 Putting it all together.
@@ -98,6 +96,8 @@ Putting it all together.
                       , manageHook = myManageHook
                       , logHook    = dynamicLogWithPP $ myLogHook pipe
                       }
+
+  main = dock >>= (\d -> xmonad $ docks $ defaults d)
 #+END_SRC
 * XMobar
 Use [[http://projects.haskell.org/xmobar/][XMobar]] as a status bar / dock.
