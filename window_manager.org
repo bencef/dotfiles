@@ -16,7 +16,7 @@ Use the [[http://xmonad.org/][XMonad]] tiling window manager.
   import qualified Data.Map        as M
 #+END_SRC
 ** General settings
-Set up `urxvt` as the default terminal.
+Set up ~urxvt~ as the default terminal.
 #+BEGIN_SRC haskell
   myTerminal = "urxvt"
 #+END_SRC
@@ -25,7 +25,7 @@ Use the "super" key as the modifier for window actions.
   myModMask = mod4Mask
 #+END_SRC
 ** Key bindings
-Use the modifier key and `b` to hide/reveal the docks.
+Use the modifier key and ~b~ to hide/reveal the docks.
 #+BEGIN_SRC haskell :tangle no :noweb-ref imports
   import XMonad.Util.CustomKeys   (customKeys)
   import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))

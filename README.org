@@ -16,7 +16,7 @@ Files will be generated and directories created if needed.
 Do *not* edit the generated files.
 Edit the org files listed in this file.
 
-Issue a `make` command when done.
+Issue a ~make~ command when done.
 The changes will be propagated.
 * Configs
 - [[file:emacs.org][Emacs]] Config for my text editor

@@ -25,7 +25,7 @@ Disclaimer about editing the configuration.
   (package-initialize)
 #+END_SRC
 ** Set up use-package
-If not installed yet, then install `use-package'.
+If not installed yet, then install ~use-package~.
 This is useful when migrating to a new computer.
 #+BEGIN_SRC emacs-lisp
   (unless (package-installed-p 'use-package)
@@ -115,7 +115,7 @@ Clean any backup that is older than a week
 *** TODO Auto-save files
 Save the auto-saves there too
 * Git
-Install magit and set `C-x g` to `magit-status`
+Install magit and set ~C-x g~ to ~magit-status~
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
@@ -131,7 +131,7 @@ Install haskell-mode
     (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode)))
 #+END_SRC
 * Theme
-Install the `eink` theme
+Install the ~eink~ theme
 #+BEGIN_SRC emacs-lisp
   (use-package eink-theme :ensure t)
 #+END_SRC
