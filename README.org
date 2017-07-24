@@ -20,3 +20,4 @@ Issue a `make` command when done.
 The changes will be propagated.
 * Configs
 - [[file:emacs.org][Emacs]] Config for my text editor
+- [[file:window_manager.org][Window manager]] Config for my window manager and information dock
