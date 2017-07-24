@@ -76,7 +76,7 @@ Perform the default logging action.
   import System.IO (hPutStrLn)
 #+END_SRC
 #+BEGIN_SRC haskell
-  myLogHook h = defaultPP { ppOutput = hPutStrLn h }
+  myLogHook h = def { ppOutput = hPutStrLn h }
 #+END_SRC
 ** Docks
 Use XMobar as a dock at the top of the screen
@@ -91,14 +91,13 @@ Use XMobar as a dock at the top of the screen
 ** Entry point
 Putting it all together.
 #+BEGIN_SRC haskell
-  defaults pipe = defaultConfig {
-          terminal           = myTerminal,
-          modMask            = myModMask,
-          keys               = customKeys (\_ -> []) myKeys,
-          layoutHook         = myLayout,
-          manageHook         = myManageHook,
-          logHook            = dynamicLogWithPP $ myLogHook pipe
-      }
+  defaults pipe = def { terminal   = myTerminal
+                      , modMask    = myModMask
+                      , keys       = customKeys (\_ -> []) myKeys
+                      , layoutHook = myLayout
+                      , manageHook = myManageHook
+                      , logHook    = dynamicLogWithPP $ myLogHook pipe
+                      }
 #+END_SRC
 * XMobar
 Use [[http://projects.haskell.org/xmobar/][XMobar]] as a status bar / dock.
