@@ -121,6 +121,15 @@ Install magit and set `C-x g` to `magit-status`
     :ensure t
     :bind (("C-x g" . magit-status)))
 #+END_SRC
+* Programming
+** Haskell
+Install haskell-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package haskell-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode)))
+#+END_SRC
 * Theme
 Install the `eink` theme
 #+BEGIN_SRC emacs-lisp
