@@ -1,0 +1,142 @@
+#+TITLE: Window manager config
+#+AUTHOR: Bence Fabian
+
+* XMonad
+:PROPERTIES:
+:header-args: :tangle ~/.xmonad/xmonad.hs :mkdirp yes
+:END:
+Use the [[http://xmonad.org/][XMonad]] tiling window manager.
+
+#+BEGIN_SRC haskell :noweb yes
+  import XMonad
+
+  <<imports>>
+
+  import qualified XMonad.StackSet as W
+  import qualified Data.Map        as M
+#+END_SRC
+** General settings
+Set up `urxvt` as the default terminal.
+#+BEGIN_SRC haskell
+  myTerminal = "urxvt"
+#+END_SRC
+Use the "super" key as the modifier for window actions.
+#+BEGIN_SRC haskell
+  myModMask = mod4Mask
+#+END_SRC
+** Key bindings
+Use the modifier key and `b` to hide/reveal the docks.
+#+BEGIN_SRC haskell :tangle no :noweb-ref imports
+  import XMonad.Util.CustomKeys   (customKeys)
+  import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))
+#+END_SRC
+#+BEGIN_SRC haskell
+  myKeys :: XConfig Layout -> [((KeyMask, KeySym), X ())]
+  myKeys conf@(XConfig {modMask = modMask}) =
+    [ ((modMask, xK_b), sendMessage ToggleStruts) ]
+#+END_SRC
+** Layouts
+There are two layouts:
+- Horizontally tiled with a main stack and a reserve stack.
+- Fullscreen with one application.
+#+BEGIN_SRC haskell :tangle no :noweb-ref imports
+  import XMonad.Layout.NoBorders (smartBorders)
+  import XMonad.Layout.Spiral (spiral)
+#+END_SRC
+#+BEGIN_SRC haskell
+  myLayout = avoidStruts $ smartBorders $ tiled ||| Full
+    where
+       -- default tiling algorithm partitions the screen into two panes
+       tiled   = Tall nmaster delta ratio
+       -- The default number of windows in the master pane
+       nmaster = 1
+       -- Default proportion of screen occupied by master pane
+       ratio   = 1/2
+       -- Percent of screen to increment by when resizing panes
+       delta   = 3/100
+#+END_SRC
+** Window rules
+Some windows need to start out as a floating window.
+Outside of the managed stack.
+#+BEGIN_SRC haskell
+  myManageHook = composeAll
+      [ className =? "MPlayer"            --> doFloat
+      , className =? "mpv"                --> doFloat
+      , title     =? "CEPL REPL"          --> doFloat
+      , className =? "Xmessage"           --> doFloat
+      , className =? "qemu-system-x86_64" --> doFloat
+      , className =? "Wine"               --> doFloat
+      , resource  =? "desktop_window"     --> doIgnore
+      , resource  =? "kdesktop"           --> doIgnore ]
+#+END_SRC
+** Logging
+Perform the default logging action.
+#+BEGIN_SRC haskell :tangle no :noweb-ref imports
+  import XMonad.Hooks.DynamicLog
+#+END_SRC
+#+BEGIN_SRC haskell
+  myLogHook h = defaultPP { ppOutput = hPutStrLn h }
+#+END_SRC
+** Docks
+Use XMobar as a dock at the top of the screen
+#+BEGIN_SRC haskell :tangle no :noweb-ref imports
+  import XMonad.Util.Run (spawnPipe)
+  import System.IO (hPutStrLn)
+#+END_SRC
+#+BEGIN_SRC haskell
+  main = do
+    barPipe <- spawnPipe "xmobar --dock --top"
+    xmonad $ docks $ defaults barPipe
+#+END_SRC
+** Entry point
+Putting it all together.
+#+BEGIN_SRC haskell
+  defaults pipe = defaultConfig {
+          terminal           = myTerminal,
+          modMask            = myModMask,
+          keys               = customKeys (\_ -> []) myKeys,
+          layoutHook         = myLayout,
+          manageHook         = myManageHook,
+          logHook            = dynamicLogWithPP $ myLogHook pipe
+      }
+#+END_SRC
+* XMobar
+Use [[http://projects.haskell.org/xmobar/][XMobar]] as a status bar / dock.
+#+BEGIN_SRC haskell :noweb yes :tangle ~/.xmobarrc
+  Config { <<font>>
+         <<colors>>
+         <<interactive-commands>>
+         <<format-template>>
+         }
+#+END_SRC
+** Font
+Use the monospace version of the [[https://dejavu-fonts.github.io/][DejaVu]] fonts.
+#+BEGIN_SRC haskell :noweb-ref font
+  font = "xft:DejaVu Sans Mono:style=Bold:size=10"
+#+END_SRC
+** Colors
+Use grey text on a black background for everything.
+#+BEGIN_SRC haskell :noweb-ref colors
+  , bgColor = "black"
+  , fgColor = "grey"
+#+END_SRC
+** Interactive commands
+- Use the input reader to display window manager status
+- Use the battery meter to display how much time is left until the
+  battery is depleted / charged.
+#+BEGIN_SRC haskell :noweb-ref interactive-commands
+  , commands = [ Run StdinReader
+               , Run Battery [ "--template", "Battery left: <timeleft>m charging: <acstatus>"
+                             , "--"
+                             , "-i", "Idle"
+                             ] 50
+               ]
+#+END_SRC
+** Format template
+Adjust the window manager status to the left.
+Adjust battery status and date / time on the right.
+#+BEGIN_SRC haskell :noweb-ref format-template
+  , sepChar = "%"
+  , alignSep = "}{"
+  , template = "%StdinReader% }{ %battery% | %date%"
+#+END_SRC
