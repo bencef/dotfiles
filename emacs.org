@@ -85,6 +85,7 @@ Define a dir where emacs can put all the backups
     <<set-up-backups>>
     <<clean-up-backups>>)
 #+END_SRC
+*** Set up backups
 - Backup by copying
 - Don't backup TRAMP files
 - keep 6 of the newest versions
@@ -98,6 +99,7 @@ Define a dir where emacs can put all the backups
         kept-old-versions 2
         version-control t)
 #+END_SRC
+*** Clean up backups
 Clean any backup that is older than a week
 #+BEGIN_SRC emacs-lisp :noweb-ref clean-up-backups :tangle no
   (message "Deleting old backup files...")
