@@ -10,11 +10,11 @@ TARGETS=\
 	$(WM_TARGET)\
 
 
+all: $(TARGETS)
+
 $(EMACS_TARGET): emacs.org
 	mkdir -p ~/.backups
 	$(TANGLE) $<
 
 $(WM_TARGET): window_manager.org
 	$(TANGLE) $<
-
-all: $(TARGETS)
