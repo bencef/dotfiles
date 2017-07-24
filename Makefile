@@ -1,0 +1,11 @@
+TANGLE=./org_tangle
+
+EMACS_TARGET=~/.emacs.d/init.el
+TARGETS=\
+	$(EMACS_TARGET)\
+
+
+$(EMACS_TARGET): emacs.org
+	$(TANGLE) $<
+
+all: $(TARGETS)
