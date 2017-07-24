@@ -52,6 +52,11 @@ Disable menu, toolbar and scrollbars.
   (when (fboundp 'horizontal-scroll-bar-mode)
     (horizontal-scroll-bar-mode -1))
 #+END_SRC
+Play nice with system clipboard.
+#+BEGIN_SRC emacs-lisp
+  (setq save-interprogram-paste-before-kill t
+        mouse-yank-at-point t)
+#+END_SRC
 Show matching parens
 #+BEGIN_SRC emacs-lisp
   (show-paren-mode 1)
