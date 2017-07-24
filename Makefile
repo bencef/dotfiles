@@ -6,6 +6,7 @@ TARGETS=\
 
 
 $(EMACS_TARGET): emacs.org
+	mkdir -p ~/.backups
 	$(TANGLE) $<
 
 all: $(TARGETS)
