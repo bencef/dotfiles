@@ -1,0 +1,125 @@
+#+TITLE: Emacs config
+#+AUTHOR: Bence Fabian
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
+
+* Packages
+Disclaimer about editing the configuration.
+#+BEGIN_SRC emacs-lisp
+  ;;;; init. el
+  ;;;;
+  ;;;; This is a generated file. DO NOT EDIT IT.
+  ;;;; Edit `emacs.org' and use `org-babel-tangle'
+  ;;;; The default hotkey is C-c C-v t
+#+END_SRC
+** Set up package repositories
+- Require the functions to handle packages
+- Add repos to make available all packages
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (let ((archives '(("melpa" . "http://melpa.org/packages/")
+                    ("marmalade" . "http://marmalade-repo.org/packages/")
+                    ("gnu" . "http://elpa.gnu.org/packages/"))))
+    (dolist (archive archives)
+      (add-to-list 'package-archives archive)))
+  (package-initialize)
+#+END_SRC
+** Set up use-package
+If not installed yet, then install `use-package'.
+This is useful when migrating to a new computer.
+#+BEGIN_SRC emacs-lisp
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+#+END_SRC
+Require it only for expansion time.
+Bind-key will be used in package configs.
+#+BEGIN_SRC emacs-lisp
+  (eval-when-compile
+    (require 'use-package))
+  (require 'bind-key)
+#+END_SRC
+* General
+Mostly lifted from the better defaults package unless oterwise stated
+** UI
+Disable menu, toolbar and scrollbars.
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+  (when (fboundp 'tool-bar-mode)
+    (tool-bar-mode -1))
+  (when (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
+  (when (fboundp 'horizontal-scroll-bar-mode)
+    (horizontal-scroll-bar-mode -1))
+#+END_SRC
+Show matching parens
+#+BEGIN_SRC emacs-lisp
+  (show-paren-mode 1)
+#+END_SRC
+Change yes/no prompts to y/n prompts
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+** Editing
+Indent with spaces.
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+#+END_SRC
+Require newline
+#+BEGIN_SRC emacs-lisp
+  (setq require-final-newline t)
+#+END_SRC
+** Backup Directory
+Snippets taken from https://www.emacswiki.org/emacs/BackupDirectory
+
+Define a dir where emacs can put all the backups
+#+BEGIN_SRC emacs-lisp  :noweb tangle
+  (require 'cl)
+
+  (let ((backup-dir "~/.backups"))
+    <<set-up-backups>>
+    <<clean-up-backups>>)
+#+END_SRC
+- Backup by copying
+- Don't backup TRAMP files
+- keep 6 of the newest versions
+- keep 2 of the oldest versions
+#+BEGIN_SRC emacs-lisp :noweb-ref set-up-backups :tangle no
+  (setq backup-by-copying t
+        backup-directory-alist `((,tramp-file-name-regexp . nil)
+                                 ("."                     . ,backup-dir))
+        delete-old-versions t
+        kept-new-versions 6
+        kept-old-versions 2
+        version-control t)
+#+END_SRC
+Clean any backup that is older than a week
+#+BEGIN_SRC emacs-lisp :noweb-ref clean-up-backups :tangle no
+  (message "Deleting old backup files...")
+  (let ((week (* 60 60 24 7))
+        (current (float-time (current-time))))
+    (dolist (file (directory-files backup-dir t))
+      (when (and (backup-file-name-p file)
+                 (> (- current (float-time (fifth (file-attributes file))))
+                    week))
+        (message "%s" file)
+        (delete-file file))))
+#+END_SRC
+*** TODO Auto-save files
+Save the auto-saves there too
+* Git
+Install magit and set `C-x g` to `magit-status`
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :bind (("C-x g" . magit-status)))
+#+END_SRC
+* Theme
+Install the `eink` theme
+#+BEGIN_SRC emacs-lisp
+  (use-package eink-theme :ensure t)
+#+END_SRC
+Load it
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'eink t)
+#+END_SRC
