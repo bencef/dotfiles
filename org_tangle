@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ "x$1" == "x" ] && exit 1
+
+exec emacs -Q --batch $1 --eval '(require (quote org))' --eval '(org-babel-tangle)' 2>/dev/null
