@@ -1,0 +1,22 @@
+#+TITLE: Configuration files
+#+AUTHOR: Bence Fabian
+
+These are my configuration files in [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]].
+
+* Installation
+** Dependencies
+- make
+- emacs (One with org-mode built-in. Versions shipped with most distros should be OK)
+** Steps
+1. clone the git repo
+2. make
+
+Files will be generated and directories created if needed.
+* Usage
+Do *not* edit the generated files.
+Edit the org files listed in this file.
+
+Issue a `make` command when done.
+The changes will be propagated.
+* Configs
+- [[file:emacs.org][Emacs]] Config for my text editor
