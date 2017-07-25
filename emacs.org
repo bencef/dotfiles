@@ -80,6 +80,11 @@ Enable changing the buffer to the visited file by pressing =a=.
 #+BEGIN_SRC emacs-lisp
   (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
+*** TRAMP
+Make =ssh= the default connection method.
+#+BEGIN_SRC emacs-lisp
+  (setq tramp-default-method "ssh")
+#+END_SRC
 ** Backup Directory
 Snippets taken from https://www.emacswiki.org/emacs/BackupDirectory
 
