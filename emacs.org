@@ -153,10 +153,20 @@ Will need paredit for all lisps.
                              ;; clojure-mode-hook
                              ;; racket-mode-hook
                              scheme-mode-hook
-                             ;; slime-repl-mode-hook
+                             slime-repl-mode-hook
                              lisp-interaction-mode)))
       (dolist (mode-hook lisp-mode-hooks)
         (add-hook mode-hook 'paredit-mode))))
+#+END_SRC
+*** Common Lisp
+Set up slime for interactive editing.
+#+BEGIN_SRC emacs-lisp
+  (use-package slime
+    :ensure t
+    :config
+    (add-hook 'inferior-lisp-mode-hook
+              #'(lambda () (inferior-slime-mode t)))
+    (setq inferior-lisp-program "sbcl"))
 #+END_SRC
 * Theme
 Install the ~eink~ theme
