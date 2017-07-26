@@ -141,6 +141,23 @@ Install haskell-mode
     :config
     (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode)))
 #+END_SRC
+** Lisp
+Will need paredit for all lisps.
+#+BEGIN_SRC emacs-lisp
+  (use-package paredit
+    :ensure t
+    :commands enable-paredit-mode
+    :init
+    (let ((lisp-mode-hooks '(emacs-lisp-mode-hook
+                             lisp-mode-hook
+                             ;; clojure-mode-hook
+                             ;; racket-mode-hook
+                             scheme-mode-hook
+                             ;; slime-repl-mode-hook
+                             lisp-interaction-mode)))
+      (dolist (mode-hook lisp-mode-hooks)
+        (add-hook mode-hook 'paredit-mode))))
+#+END_SRC
 * Theme
 Install the ~eink~ theme
 #+BEGIN_SRC emacs-lisp
