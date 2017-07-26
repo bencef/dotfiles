@@ -163,10 +163,12 @@ Set up slime for interactive editing.
 #+BEGIN_SRC emacs-lisp
   (use-package slime
     :ensure t
+    :init
+    (setq inferior-lisp-program "sbcl"
+          slime-contribs        '(slime-fancy))
     :config
     (add-hook 'inferior-lisp-mode-hook
-              #'(lambda () (inferior-slime-mode t)))
-    (setq inferior-lisp-program "sbcl"))
+              #'(lambda () (inferior-slime-mode t))))
 #+END_SRC
 * Theme
 Install the ~eink~ theme
