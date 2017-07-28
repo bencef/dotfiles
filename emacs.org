@@ -74,6 +74,20 @@ Require newline
 #+BEGIN_SRC emacs-lisp
   (setq require-final-newline t)
 #+END_SRC
+*** Chromium edit with emacs
+Set up the emacs side of the [[https://github.com/stsquad/emacs_chrome][Edit with emacs]] chrome/ium plugin.
+
+Add to emacs search path.
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/lib/emacs/")
+#+END_SRC
+If emacs is running in daemon mode and the library is downloaded,
+then start the edit server.
+#+BEGIN_SRC emacs-lisp
+  (when (and (daemonp) (locate-library "edit-server"))
+    (require 'edit-server)
+    (edit-server-start))
+#+END_SRC
 ** File handling
 *** Dired
 Enable changing the buffer to the visited file by pressing =a=.
