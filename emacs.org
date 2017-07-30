@@ -184,6 +184,19 @@ Set up slime for interactive editing.
     (add-hook 'inferior-lisp-mode-hook
               #'(lambda () (inferior-slime-mode t))))
 #+END_SRC
+*** Clojure
+Install clojure mode for editing clojure and boot files
+#+BEGIN_SRC emacs-lisp
+  (use-package clojure-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.\\(cljs?\\|boot\\)\\'" . clojure-mode)))
+#+END_SRC
+Install cider for interactive development.
+#+BEGIN_SRC emacs-lisp
+  (use-package cider
+    :ensure t)
+#+END_SRC
 * Theme
 Install the ~eink~ theme
 #+BEGIN_SRC emacs-lisp
