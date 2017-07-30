@@ -40,7 +40,7 @@ Bind-key will be used in package configs.
   (require 'bind-key)
 #+END_SRC
 * General
-Mostly lifted from the better defaults package unless oterwise stated
+Mostly lifted from the better defaults package unless otherwise stated.
 ** UI
 Disable menu, toolbar and scrollbars.
 #+BEGIN_SRC emacs-lisp
