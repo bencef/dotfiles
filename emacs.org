@@ -164,7 +164,7 @@ Will need paredit for all lisps.
     :init
     (let ((lisp-mode-hooks '(emacs-lisp-mode-hook
                              lisp-mode-hook
-                             ;; clojure-mode-hook
+                             clojure-mode-hook
                              ;; racket-mode-hook
                              scheme-mode-hook
                              slime-repl-mode-hook
