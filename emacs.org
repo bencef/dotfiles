@@ -65,6 +65,10 @@ Change yes/no prompts to y/n prompts
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
+Enable narrowing
+#+BEGIN_SRC emacs-lisp
+  (put 'narrow-to-region 'disabled nil)
+#+END_SRC
 ** Editing
 Indent with spaces.
 #+BEGIN_SRC emacs-lisp
