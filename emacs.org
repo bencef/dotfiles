@@ -76,7 +76,9 @@ Use ivy/swiper/counsel for completion
     :ensure t
     :bind (
            <<bindings>>
-           ))
+           )
+    :config
+    (setq completing-read-function 'ivy-completing-read))
 #+END_SRC
 Replace =isearch= with =swiper=
 #+BEGIN_SRC emacs-lisp :noweb-ref bindings :tangle no
