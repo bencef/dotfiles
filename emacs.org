@@ -111,7 +111,7 @@ Indent with spaces.
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
 #+END_SRC
-Require newline
+Require newline at end of file.
 #+BEGIN_SRC emacs-lisp
   (setq require-final-newline t)
 #+END_SRC
