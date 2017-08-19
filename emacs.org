@@ -84,6 +84,10 @@ Replace =isearch= with =swiper=
 #+BEGIN_SRC emacs-lisp :noweb-ref bindings :tangle no
   ("C-s" . swiper)
 #+END_SRC
+Use the counsel version of =M-x=
+#+BEGIN_SRC emacs-lisp :noweb-ref bindings :tangle no
+  ("M-x" . counsel-M-x)
+#+END_SRC
 Use counsel for file and buffer search
 #+BEGIN_SRC emacs-lisp :noweb-ref bindings :tangle no
   ("C-x C-f" . counsel-find-file)
