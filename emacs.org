@@ -17,9 +17,9 @@ Disclaimer about editing the configuration.
 #+BEGIN_SRC emacs-lisp
   (require 'package)
   (setq package-enable-at-startup nil)
-  (let ((archives '(("melpa" . "http://melpa.org/packages/")
+  (let ((archives '(("melpa"     . "http://melpa.org/packages/")
                     ("marmalade" . "http://marmalade-repo.org/packages/")
-                    ("gnu" . "http://elpa.gnu.org/packages/"))))
+                    ("gnu"       . "http://elpa.gnu.org/packages/"))))
     (dolist (archive archives)
       (add-to-list 'package-archives archive)))
   (package-initialize)
