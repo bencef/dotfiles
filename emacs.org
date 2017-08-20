@@ -181,11 +181,11 @@ Clean any backup that is older than a week
 *** TODO Auto-save files
 Save the auto-saves there too
 * Git
-Install magit and set ~C-x g~ to ~magit-status~
+Install magit and set ~C-c g~ to ~magit-status~
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
-    :bind (("C-x g" . magit-status)))
+    :bind (("C-c g" . magit-status)))
 #+END_SRC
 * Programming
 ** Haskell
