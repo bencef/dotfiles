@@ -61,6 +61,10 @@ Show matching parens
 #+BEGIN_SRC emacs-lisp
   (show-paren-mode 1)
 #+END_SRC
+Don't create new frame for =ediff=
+#+BEGIN_SRC emacs-lisp
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+#+END_SRC
 Change yes/no prompts to y/n prompts
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
