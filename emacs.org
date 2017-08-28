@@ -81,7 +81,7 @@ Use ivy/swiper/counsel for completion
     :bind (
            <<bindings>>
            )
-    :config
+    :init
     (setq completing-read-function 'ivy-completing-read))
 #+END_SRC
 Replace =isearch= with =swiper=
