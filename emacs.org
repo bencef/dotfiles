@@ -242,6 +242,14 @@ Install cider for interactive development.
   (use-package cider
     :ensure t)
 #+END_SRC
+** C-like languages
+Use smartparens
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens
+    :ensure t
+    :init
+    (add-hook 'c-mode-common-hook #'smartparens-mode))
+#+END_SRC
 * Theme
 Install the ~eink~ theme
 #+BEGIN_SRC emacs-lisp
