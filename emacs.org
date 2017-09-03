@@ -235,7 +235,10 @@ Install clojure mode for editing clojure and boot files
   (use-package clojure-mode
     :ensure t
     :config
-    (add-to-list 'auto-mode-alist '("\\.\\(cljs?\\|boot\\)\\'" . clojure-mode)))
+    (let ((associations '(("\\.\\(clj\\|boot\\)\\'" . clojure-mode)
+                          ("\\.cljs\\'"       . clojurescript-mode))))
+      (dolist (association associations)
+        (add-to-list 'auto-mode-alist association))))
 #+END_SRC
 Install cider for interactive development.
 #+BEGIN_SRC emacs-lisp
