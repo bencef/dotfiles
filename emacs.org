@@ -210,6 +210,7 @@ Will need paredit for all lisps.
     (let ((lisp-mode-hooks '(emacs-lisp-mode-hook
                              lisp-mode-hook
                              clojure-mode-hook
+                             cider-repl-mode-hook
                              ;; racket-mode-hook
                              scheme-mode-hook
                              slime-repl-mode-hook
