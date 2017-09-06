@@ -151,8 +151,9 @@ Define a dir where emacs can put all the backups
 #+BEGIN_SRC emacs-lisp  :noweb tangle
   (require 'cl)
 
-  (let ((backup-dir "~/.backups"))
+  (let ((backup-dir "~/.backups/"))
     <<set-up-backups>>
+    <<set-up-autosave>>
     <<clean-up-backups>>)
 #+END_SRC
 *** Set up backups
@@ -182,8 +183,14 @@ Clean any backup that is older than a week
         (message "%s" file)
         (delete-file file))))
 #+END_SRC
-*** TODO Auto-save files
-Save the auto-saves there too
+*** Auto-save files
+Save the auto-saves there too.
+#+BEGIN_SRC emacs-lisp :noweb-ref set-up-autosave :tangle no
+  (setq auto-save-file-name-transforms
+        `((".*" ,backup-dir t)))
+  (setq auto-save-list-file-prefix
+        backup-dir)
+#+END_SRC
 * Git
 Install magit and set ~C-c g~ to ~magit-status~
 #+BEGIN_SRC emacs-lisp
