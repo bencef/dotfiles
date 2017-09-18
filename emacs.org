@@ -145,6 +145,10 @@ Enable changing the buffer to the visited file by pressing =a=.
 #+BEGIN_SRC emacs-lisp
   (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
+Move files to trash on deletion
+#+BEGIN_SRC emacs-lisp
+  (setq delete-by-moving-to-trash t)
+#+END_SRC
 *** TRAMP
 Make =ssh= the default connection method.
 #+BEGIN_SRC emacs-lisp
