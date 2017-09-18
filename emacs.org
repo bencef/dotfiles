@@ -231,6 +231,7 @@ Will need paredit for all lisps.
                              ;; racket-mode-hook
                              scheme-mode-hook
                              slime-repl-mode-hook
+                             eval-expression-minibuffer-setup-hook
                              lisp-interaction-mode)))
       (dolist (mode-hook lisp-mode-hooks)
         (add-hook mode-hook 'paredit-mode))))
