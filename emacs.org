@@ -272,6 +272,24 @@ Use smartparens
     :init
     (add-hook 'c-mode-common-hook #'smartparens-mode))
 #+END_SRC
+*** C++
+Use clang to format C++ bufers.
+#+BEGIN_SRC emacs-lisp
+  (defun c++format ()
+    "Format a c++ buffer using clang-format."
+    (interactive)
+    (shell-command-on-region
+     (point-min) (point-max)
+     "clang-format" nil 'replace))
+#+END_SRC
+Bind it to =M-q=
+And add it to =before-save-hook=.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c++-mode-hook
+            #'(lambda ()
+                (local-set-key (kbd "M-q") #'c++format)
+                (add-hook 'before-save-hook #'c++format nil 'make-it-local)))
+#+END_SRC
 * Theme
 Install the ~eink~ theme
 #+BEGIN_SRC emacs-lisp
