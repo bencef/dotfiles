@@ -290,6 +290,18 @@ And add it to =before-save-hook=.
                 (local-set-key (kbd "M-q") #'c++format)
                 (add-hook 'before-save-hook #'c++format nil 'make-it-local)))
 #+END_SRC
+After saving a file, run a static linter on it.
+#+BEGIN_SRC emacs-lisp
+  (defun c++lint ()
+    "Run external linter tool on a file."
+    (interactive)
+    (when buffer-file-name
+      (shell-command (concat "c++lint " buffer-file-name))))
+
+  (add-hook 'c++-mode-hook
+            #'(lambda ()
+                (add-hook 'after-save-hook #'c++lint nil 'make-it-local)))
+#+END_SRC
 * Theme
 Install the ~eink~ theme
 #+BEGIN_SRC emacs-lisp
