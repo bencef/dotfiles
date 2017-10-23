@@ -201,6 +201,11 @@ Save the auto-saves there too.
   (setq auto-save-list-file-prefix
         backup-dir)
 #+END_SRC
+* Org
+Use htmlize to add syntax highlighting to org exported code blocks.
+#+BEGIN_SRC emacs-lisp
+  (use-package htmlize :ensure t)
+#+END_SRC
 * Git
 Install magit and set ~C-c g~ to ~magit-status~
 #+BEGIN_SRC emacs-lisp
