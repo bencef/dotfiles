@@ -62,7 +62,7 @@ Outside of the managed stack.
   myManageHook = composeAll
       [ className =? "MPlayer"            --> doFloat
       , className =? "mpv"                --> doFloat
-      , title     =? "CEPL REPL"          --> doFloat
+      , title     =? "CEPL"               --> doFloat
       , className =? "Xmessage"           --> doFloat
       , className =? "qemu-system-x86_64" --> doFloat
       , className =? "Wine"               --> doFloat
