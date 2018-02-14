@@ -222,6 +222,14 @@ Install haskell-mode
     :config
     (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode)))
 #+END_SRC
+** OCaml
+Use =tuareg= mode for OCaml files.
+#+BEGIN_SRC emacs-lisp
+  (use-package tuareg
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.ml[yli]?\\'" . tuareg-mode)))
+#+END_SRC
 ** Lisp
 Will need paredit for all lisps.
 #+BEGIN_SRC emacs-lisp
