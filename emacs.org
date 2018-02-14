@@ -311,7 +311,10 @@ After saving a file, run a static linter on it.
 ** Ledger
 Add ledger mode
 #+BEGIN_SRC emacs-lisp
-  (use-package ledger-mode :ensure t)
+  (use-package ledger-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode)))
 #+END_SRC
 * Theme
 Install the ~eink~ theme
