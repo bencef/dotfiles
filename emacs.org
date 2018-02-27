@@ -285,6 +285,30 @@ Use smartparens
     :init
     (add-hook 'c-mode-common-hook #'smartparens-mode))
 #+END_SRC
+Use yasnippet for c-like langs.
+
+If the tables are not loaded then load them.
+#+BEGIN_SRC emacs-lisp
+  (defvar *snippet-tables-loaded-p*
+    nil
+    "`nil' if the yas tables have not been loaded yet.")
+
+  (defun load-snippets ()
+    "Load yas minor mode. If the snippet tables have not yet been
+  loaded then load them."
+    (unless *snippet-tables-loaded-p*
+      (yas-reload-all)
+      (setq *snippet-tables-loaded-p* t))
+    (yas-minor-mode))
+#+END_SRC
+Add the package and hook.
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet-snippets
+    :ensure t
+    :commands yas-reload-all
+    :init
+    (add-hook 'c-mode-common-hook #'load-snippets))
+#+END_SRC
 *** C++
 Use clang to format C++ bufers.
 #+BEGIN_SRC emacs-lisp
