@@ -119,6 +119,10 @@ Require newline at end of file.
 #+BEGIN_SRC emacs-lisp
   (setq require-final-newline t)
 #+END_SRC
+Delete trailing whitespace before saving.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook #'delete-trailing-whitespace)
+#+END_SRC
 *** Multiple cursors
 Possibly use multiple cursors for editing.
 #+BEGIN_SRC emacs-lisp
