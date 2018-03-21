@@ -361,3 +361,7 @@ Use the [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]] font
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist '(font . "Source Code Pro-12"))
 #+END_SRC
+Use a bar for the cursor.  We are not in the 70s.
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist '(cursor-type . bar))
+#+END_SRC
