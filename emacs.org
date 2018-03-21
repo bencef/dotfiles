@@ -352,12 +352,8 @@ Add ledger mode
     :config
     (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode)))
 #+END_SRC
-* Theme
-Install the ~eink~ theme
+* Appearance
+Use the =tango= theme
 #+BEGIN_SRC emacs-lisp
-  (use-package eink-theme :ensure t)
-#+END_SRC
-Load it
-#+BEGIN_SRC emacs-lisp
-  (load-theme 'eink t)
+  (load-theme 'tango t)
 #+END_SRC
