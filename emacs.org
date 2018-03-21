@@ -357,3 +357,7 @@ Use the =tango= theme
 #+BEGIN_SRC emacs-lisp
   (load-theme 'tango t)
 #+END_SRC
+Use the [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]] fonts.
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist '(font . "Source Code Pro-12"))
+#+END_SRC
