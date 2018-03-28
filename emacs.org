@@ -352,6 +352,14 @@ Add ledger mode
     :config
     (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode)))
 #+END_SRC
+** Markdown
+Enable markdown mode for markdown files.
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+#+END_SRC
 * Appearance
 Use the =tango= theme
 #+BEGIN_SRC emacs-lisp
