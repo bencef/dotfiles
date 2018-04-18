@@ -234,6 +234,21 @@ Use =tuareg= mode for OCaml files.
     :config
     (add-to-list 'auto-mode-alist '("\\.ml[yli]?\\'" . tuareg-mode)))
 #+END_SRC
+** Scala
+Use =sbt= for building.
+#+BEGIN_SRC emacs-lisp
+  (use-package sbt-mode
+    :ensure t
+    :commands sbt-start sbt-hydra)
+#+END_SRC
+Add =scala-mode= and set up using the sbt hydra.
+#+BEGIN_SRC emacs-lisp
+  (use-package scala-mode
+    :ensure t
+    :interpreter ("scala" . scala-mode)
+    :bind (:map scala-mode-map
+           ("C-c C-c" . sbt-hydra)))
+#+END_SRC
 ** Lisp
 Will need paredit for all lisps.
 #+BEGIN_SRC emacs-lisp
