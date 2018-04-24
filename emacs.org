@@ -332,6 +332,12 @@ Add the package and hook.
     :init
     (add-hook 'c-mode-common-hook #'load-snippets))
 #+END_SRC
+*** Java
+Add more snippets for Java.
+#+BEGIN_SRC emacs-lisp
+  (use-package java-snippets
+    :ensure t)
+#+END_SRC
 *** C++
 Use clang to format C++ bufers.
 #+BEGIN_SRC emacs-lisp
