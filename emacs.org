@@ -123,6 +123,13 @@ Delete trailing whitespace before saving.
 #+BEGIN_SRC emacs-lisp
   (add-hook 'before-save-hook #'delete-trailing-whitespace)
 #+END_SRC
+*** Default multi-language input method
+Most of the time it is the easter european input for Hungarian / Polish.
+
+Other ones still can be chosen with a universal argument (=C-u=).
+#+BEGIN_SRC emacs-lisp
+  (setq default-input-method "latin-2-alt-postfix")
+#+END_SRC
 *** Multiple cursors
 Possibly use multiple cursors for editing.
 #+BEGIN_SRC emacs-lisp
