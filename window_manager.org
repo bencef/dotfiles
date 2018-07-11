@@ -66,6 +66,7 @@ Outside of the managed stack.
       , className =? "Xmessage"           --> doFloat
       , className =? "qemu-system-x86_64" --> doFloat
       , className =? "Wine"               --> doFloat
+      , className =? "Screenkey"          --> doIgnore
       , resource  =? "desktop_window"     --> doIgnore
       , resource  =? "kdesktop"           --> doIgnore ]
 #+END_SRC
