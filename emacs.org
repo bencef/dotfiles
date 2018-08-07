@@ -393,9 +393,9 @@ Enable markdown mode for markdown files.
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 #+END_SRC
 * Appearance
-Use the =tango= theme
+Use the =tango-dark= theme
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'tango t)
+  (load-theme 'tango-dark t)
 #+END_SRC
 Use the [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]] fonts.
 #+BEGIN_SRC emacs-lisp
