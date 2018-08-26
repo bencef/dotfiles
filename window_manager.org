@@ -16,9 +16,9 @@ Use the [[http://xmonad.org/][XMonad]] tiling window manager.
   import qualified Data.Map        as M
 #+END_SRC
 ** General settings
-Set up ~urxvt~ as the default terminal.
+Set up ~uxterm~ as the default terminal.
 #+BEGIN_SRC haskell
-  myTerminal = "urxvt"
+  myTerminal = "uxterm -fa mono -fg white -bg black"
 #+END_SRC
 Use the "super" key as the modifier for window actions.
 #+BEGIN_SRC haskell
