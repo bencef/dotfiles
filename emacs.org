@@ -73,6 +73,12 @@ Enable narrowing
 #+BEGIN_SRC emacs-lisp
   (put 'narrow-to-region 'disabled nil)
 #+END_SRC
+Use =ace-window= for window navigation instead of =other-window=.
+#+BEGIN_SRC emacs-lisp
+  (use-package ace-window
+    :ensure t
+    :bind (("C-x o" . ace-window)))
+#+END_SRC
 *** Completion
 Use ivy/swiper/counsel for completion
 #+BEGIN_SRC emacs-lisp :noweb yes
