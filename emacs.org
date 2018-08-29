@@ -240,37 +240,6 @@ Install magit and set ~C-c g~ to ~magit-status~
     :bind (("C-c g" . magit-status)))
 #+END_SRC
 * Programming
-** Haskell
-Install haskell-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package haskell-mode
-    :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode)))
-#+END_SRC
-** OCaml
-Use =tuareg= mode for OCaml files.
-#+BEGIN_SRC emacs-lisp
-  (use-package tuareg
-    :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.ml[yli]?\\'" . tuareg-mode)))
-#+END_SRC
-** Scala
-Use =sbt= for building.
-#+BEGIN_SRC emacs-lisp
-  (use-package sbt-mode
-    :ensure t
-    :commands sbt-start sbt-hydra)
-#+END_SRC
-Add =scala-mode= and set up using the sbt hydra.
-#+BEGIN_SRC emacs-lisp
-  (use-package scala-mode
-    :ensure t
-    :interpreter ("scala" . scala-mode)
-    :bind (:map scala-mode-map
-           ("C-c C-c" . sbt-hydra)))
-#+END_SRC
 ** Lisp
 Will need paredit for all lisps.
 #+BEGIN_SRC emacs-lisp
@@ -290,111 +259,7 @@ Will need paredit for all lisps.
       (dolist (mode-hook lisp-mode-hooks)
         (add-hook mode-hook 'paredit-mode))))
 #+END_SRC
-*** Common Lisp
-Set up slime for interactive editing.
-#+BEGIN_SRC emacs-lisp
-  (use-package slime
-    :ensure t
-    :init
-    (setq inferior-lisp-program "sbcl"
-          slime-contribs        '(slime-fancy))
-    :config
-    (add-hook 'inferior-lisp-mode-hook
-              #'(lambda () (inferior-slime-mode t))))
-#+END_SRC
-*** Clojure
-Install clojure mode for editing clojure and boot files
-#+BEGIN_SRC emacs-lisp
-  (use-package clojure-mode
-    :ensure t
-    :config
-    (let ((associations '(("\\.\\(clj\\|boot\\)\\'" . clojure-mode)
-                          ("\\.cljs\\'"       . clojurescript-mode))))
-      (dolist (association associations)
-        (add-to-list 'auto-mode-alist association))))
-#+END_SRC
-Install cider for interactive development.
-#+BEGIN_SRC emacs-lisp
-  (use-package cider
-    :ensure t)
-#+END_SRC
-** C-like languages
-Use smartparens
-#+BEGIN_SRC emacs-lisp
-  (use-package smartparens
-    :ensure t
-    :init
-    (add-hook 'c-mode-common-hook #'smartparens-mode))
-#+END_SRC
-Use yasnippet for c-like langs.
-
-If the tables are not loaded then load them.
-#+BEGIN_SRC emacs-lisp
-  (defvar *snippet-tables-loaded-p*
-    nil
-    "`nil' if the yas tables have not been loaded yet.")
-
-  (defun load-snippets ()
-    "Load yas minor mode. If the snippet tables have not yet been
-  loaded then load them."
-    (unless *snippet-tables-loaded-p*
-      (yas-reload-all)
-      (setq *snippet-tables-loaded-p* t))
-    (yas-minor-mode))
-#+END_SRC
-Add the package and hook.
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet-snippets
-    :ensure t
-    :commands yas-reload-all
-    :init
-    (add-hook 'c-mode-common-hook #'load-snippets))
-#+END_SRC
-*** Java
-Add more snippets for Java.
-#+BEGIN_SRC emacs-lisp
-  (use-package java-snippets
-    :ensure t)
-#+END_SRC
-*** C++
-Use clang to format C++ bufers.
-#+BEGIN_SRC emacs-lisp
-  (defun c++format ()
-    "Format a c++ buffer using clang-format."
-    (interactive)
-    (shell-command-on-region
-     (point-min) (point-max)
-     "clang-format" nil 'replace))
-#+END_SRC
-Bind it to =M-q=
-And add it to =before-save-hook=.
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'c++-mode-hook
-            #'(lambda ()
-                (local-set-key (kbd "M-q") #'c++format)
-                (add-hook 'before-save-hook #'c++format nil 'make-it-local)))
-#+END_SRC
-After saving a file, run a static linter on it.
-#+BEGIN_SRC emacs-lisp
-  (defun c++lint ()
-    "Run external linter tool on a file."
-    (interactive)
-    (when buffer-file-name
-      (shell-command (concat "c++lint " buffer-file-name))))
-
-  (add-hook 'c++-mode-hook
-            #'(lambda ()
-                (add-hook 'after-save-hook #'c++lint nil 'make-it-local)))
-#+END_SRC
 * Other
-** Ledger
-Add ledger mode
-#+BEGIN_SRC emacs-lisp
-  (use-package ledger-mode
-    :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode)))
-#+END_SRC
 ** Markdown
 Enable markdown mode for markdown files.
 #+BEGIN_SRC emacs-lisp
@@ -407,10 +272,6 @@ Enable markdown mode for markdown files.
 Use the =tango-dark= theme
 #+BEGIN_SRC emacs-lisp
   (load-theme 'tango-dark t)
-#+END_SRC
-Use the [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]] fonts.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(font . "Source Code Pro-12"))
 #+END_SRC
 Use a bar for the cursor.  We are not in the 70s.
 #+BEGIN_SRC emacs-lisp
