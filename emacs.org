@@ -73,11 +73,24 @@ Enable narrowing
 #+BEGIN_SRC emacs-lisp
   (put 'narrow-to-region 'disabled nil)
 #+END_SRC
+*** Moving around
 Use =ace-window= for window navigation instead of =other-window=.
 #+BEGIN_SRC emacs-lisp
   (use-package ace-window
     :ensure t
     :bind (("C-x o" . ace-window)))
+#+END_SRC
+Use =avy= to move around.  Use =M-g= as a leader which already has
+=goto-line= and =goto-char=.
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :ensure t
+    :bind (;; Word jumping
+           ("M-g w" . avy-goto-word-1)
+           ("M-g M-b" . avy-goto-word-1-above)
+           ("M-g M-f" . avy-goto-word-1-below)
+           ;; Line jumping
+           ("M-g l" . avy-goto-line)))
 #+END_SRC
 *** Completion
 Use ivy/swiper/counsel for completion
