@@ -417,9 +417,14 @@ Enable markdown mode for markdown files.
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 #+END_SRC
 * Appearance
-Use the =tango-dark= theme
+Use the [[https://github.com/voloyev/sexy-monochrome-theme][sexy monochrome theme]].
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'tango-dark t)
+  (use-package sexy-monochrome-theme :ensure t)
+  (load-theme 'sexy-monochrome t)
+#+END_SRC
+Have the mode line of the active window a little lighter.
+#+BEGIN_SRC emacs-lisp
+  (set-face-background 'mode-line "gray15")
 #+END_SRC
 Use the [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]] fonts.
 #+BEGIN_SRC emacs-lisp
