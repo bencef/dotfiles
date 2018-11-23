@@ -408,6 +408,11 @@ Add ledger mode
     :config
     (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode)))
 #+END_SRC
+** Rest client
+Add REST client mode
+#+BEGIN_SRC emacs-lisp
+  (use-package restclient :ensure t)
+#+END_SRC
 ** Markdown
 Enable markdown mode for markdown files.
 #+BEGIN_SRC emacs-lisp
