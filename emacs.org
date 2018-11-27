@@ -183,6 +183,10 @@ Bind =C-x C-d= to =dired= instead of =list-directory=.
 #+BEGIN_SRC emacs-lisp
   (bind-key (kbd "C-x C-d") #'dired)
 #+END_SRC
+Hide details by default.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'dired-mode-hook #'dired-hide-details-mode 'append (not 'local))
+#+END_SRC
 Enable multi-panel file operations by turning on "Do what I mean"
 mode.
 #+BEGIN_SRC emacs-lisp
