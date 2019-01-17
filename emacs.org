@@ -78,7 +78,11 @@ Use =ace-window= for window navigation instead of =other-window=.
 #+BEGIN_SRC emacs-lisp
   (use-package ace-window
     :ensure t
-    :bind (("C-x o" . ace-window)))
+    :bind (("C-x o" . ace-window))
+    ;; Emacs 25 compatibility hack
+    ;; TODO: remove when all deploys are at 26.
+    :config (unless (functionp 'frame-parent)
+              (fset 'frame-parent #'(lambda (arg) nil))))
 #+END_SRC
 Use =avy= to move around.  Use =M-g= as a leader which already has
 =goto-line= and =goto-char=.
