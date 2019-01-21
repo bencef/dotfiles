@@ -80,7 +80,7 @@ Use =ace-window= for window navigation instead of =other-window=.
     :ensure t
     :bind (("C-x o" . ace-window))
     ;; Emacs 25 compatibility hack
-    ;; TODO: remove when all deplloys are at 26.
+    ;; TODO: remove when all deploys are at 26.
     :config (unless (functionp 'frame-parent)
               (fset 'frame-parent #'(lambda (arg) nil))))
 #+END_SRC
@@ -374,7 +374,7 @@ Add more snippets for Java.
     :ensure t)
 #+END_SRC
 *** C++
-Use clang to format C++ bufers.
+Use clang to format C++ buffers.
 #+BEGIN_SRC emacs-lisp
   (defun c++format ()
     "Format a c++ buffer using clang-format."
