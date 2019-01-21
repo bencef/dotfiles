@@ -249,6 +249,40 @@ Use htmlize to add syntax highlighting to org exported code blocks.
 #+BEGIN_SRC emacs-lisp
   (use-package htmlize :ensure t)
 #+END_SRC
+** Markdown export
+Make the markdown export use the backtick syntax for exporting code
+blocks.  The deault one exports only with indentation.
+
+Using the backtick syntax makes it possible to syntax highlight
+code blocks properly.
+
+Create a function to export with the backtick rule.
+#+BEGIN_SRC emacs-lisp
+  (defun my/md-backtick-src-block (src-block contents info)
+    "Print code blocks with the backtick syntax so they can be
+  highlighted appropriately.  The CONTENTS parameter is empty."
+    (format (concat "```%s\n"
+                    "%s"
+                    "```\n")
+            (org-element-property :language src-block)
+            (org-remove-indentation
+             (org-export-format-code-default src-block info))))
+#+END_SRC
+Register the new export mode which uses our function.  Derive it
+from the default markdown mode =md=.
+#+BEGIN_SRC emacs-lisp
+  (org-export-define-derived-backend 'md-backtick 'md
+    :translate-alist '((src-block . my/md-backtick-src-block)))
+#+END_SRC
+Create an interactive function so we can use our new export
+functionality from the =M-x= menu or from a key binding.
+#+BEGIN_SRC emacs-lisp
+  (defun org-export-md-backtick-to-buffer ()
+      "Export the current org mode buffer as Markdown with code
+  blocks exported with the backtick syntax."
+    (interactive)
+    (org-export-to-buffer 'md-backtick "*MD Bactick Export*"))
+#+END_SRC
 * Git
 Install magit and set =C-c g= to =magit-status=
 #+BEGIN_SRC emacs-lisp
