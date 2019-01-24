@@ -274,13 +274,14 @@ from the default markdown mode =md=.
   (use-package org
     :ensure nil
     :defer t
-    :requires ox-md
     :init
     (autoload #'org-export-define-derived-backend "ox")
     :config
-    (org-export-define-derived-backend
-     'md-backtick 'md
-     :translate-alist '((src-block . my/md-backtick-src-block))))
+    (progn
+      (require 'ox-md)
+      (org-export-define-derived-backend
+       'md-backtick 'md
+       :translate-alist '((src-block . my/md-backtick-src-block)))))
 #+END_SRC
 Create an interactive function so we can use our new export
 functionality from the =M-x= menu or from a key binding.
