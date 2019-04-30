@@ -1,7 +1,8 @@
 #!/bin/sh
 
-if [ "x$1" == "x" ]
+if [ ! -e "$1" ]
 then
+    echo >&2 "File doesn't exist: $1"
     exit 1
 fi
 
