@@ -478,22 +478,14 @@ Enable markdown mode for markdown files.
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 #+END_SRC
 * Appearance
-Use the [[https://github.com/voloyev/sexy-monochrome-theme][sexy monochrome theme]].
+Use the =misterioso= theme
 #+BEGIN_SRC emacs-lisp
-  (use-package sexy-monochrome-theme :ensure t)
-  (load-theme 'sexy-monochrome t)
-#+END_SRC
-Have the mode line of the active window a little lighter.
-#+BEGIN_SRC emacs-lisp
-  (set-face-background 'mode-line "gray15")
+  (load-theme 'misterioso t)
+  (enable-theme 'misterioso)
 #+END_SRC
 Use the [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]] fonts.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist '(font . "Source Code Pro-12"))
-#+END_SRC
-Use a bar for the cursor.  We are not in the 70s.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(cursor-type . bar))
 #+END_SRC
 Set default transparency for maximum hacker street cred.
 #+BEGIN_SRC emacs-lisp
