@@ -323,6 +323,20 @@ Will need paredit for all lisps.
       (dolist (mode-hook lisp-mode-hooks)
         (add-hook mode-hook 'paredit-mode))))
 #+END_SRC
+
+** Rust
+
+   Add rust mode.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package rust-mode
+       :ensure t)
+   #+END_SRC
+
+** TODO Language server protocol
+
+   Look into how to set it up.
+
 * Other
 ** Rest client
 Add REST client mode
