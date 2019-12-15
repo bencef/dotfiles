@@ -508,7 +508,3 @@ Use the [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]] font
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist '(font . "Source Code Pro-12"))
 #+END_SRC
-Set default transparency for maximum hacker street cred.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(alpha . 85))
-#+END_SRC
