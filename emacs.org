@@ -324,6 +324,11 @@ Use =tuareg= mode for OCaml files.
     :config
     (add-to-list 'auto-mode-alist '("\\.ml[yli]?\\'" . tuareg-mode)))
 #+END_SRC
+Use =utop= for having a toplevel.
+#+BEGIN_SRC emacs-lisp
+  (use-package utop
+    :ensure t)
+#+END_SRC
 ** Scala
 Use =sbt= for building.
 #+BEGIN_SRC emacs-lisp
