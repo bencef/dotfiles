@@ -502,6 +502,12 @@ Add REST client mode
 #+BEGIN_SRC emacs-lisp
   (use-package restclient :ensure t)
 #+END_SRC
+** Artist mode
+Bind =artist-mode= to =C-c a=.
+#+BEGIN_SRC emacs-lisp
+  (use-package artist-mode
+    :bind (("C-c a" . artist-mode)))
+#+END_SRC
 ** Markdown
 Enable markdown mode for markdown files.
 #+BEGIN_SRC emacs-lisp
