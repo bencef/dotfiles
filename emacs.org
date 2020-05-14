@@ -157,7 +157,13 @@ Other ones still can be chosen with a universal argument (=C-u=).
 Possibly use multiple cursors for editing.
 #+BEGIN_SRC emacs-lisp
   (use-package multiple-cursors
-    :ensure t)
+    :ensure t
+    :bind (("C-c m a" . mc/mark-all-dwim)                ;; All
+           ("C-c m b" . mc/edit-beginnings-of-lines)     ;; Beginning
+           ("C-c m e" . mc/edit-ends-of-lines)           ;; End
+           ("C-c m m" . mc/mark-more-like-this-extended) ;; More
+           ("C-c m n" . mc/insert-numbers)               ;; Numbers
+           ))
 #+END_SRC
 *** Chromium edit with emacs
 Set up the emacs side of the [[https://github.com/stsquad/emacs_chrome][Edit with emacs]] chrome/ium plugin.
