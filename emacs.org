@@ -528,6 +528,21 @@ Enable markdown mode for markdown files.
     :config
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 #+END_SRC
+** PlantUML
+Use [[https://plantuml.com/][plantUML]] to draw diagrams.
+
+- Use the local execuatable
+- Emit ascii art
+
+
+#+BEGIN_SRC emacs-lisp
+  (use-package plantuml-mode
+    :ensure t
+    :init
+    (setq plantuml-default-exec-mode 'executable
+          plantuml-executable-path "plantuml"
+          plantuml-output-type "txt"))
+#+END_SRC
 * Appearance
 Use the =misterioso= theme
 #+BEGIN_SRC emacs-lisp
