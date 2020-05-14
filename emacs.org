@@ -360,8 +360,7 @@ Add REST client mode
 ** Artist mode
 Bind =artist-mode= to =C-c a=.
 #+BEGIN_SRC emacs-lisp
-  (use-package artist-mode
-    :bind (("C-c a" . artist-mode)))
+  (bind-key (kbd "C-c a") #'artist-mode global-map)
 #+END_SRC
 ** Markdown
 Enable markdown mode for markdown files.
