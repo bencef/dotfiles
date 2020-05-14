@@ -533,6 +533,7 @@ Use [[https://plantuml.com/][plantUML]] to draw diagrams.
 
 - Use the local execuatable
 - Emit ascii art
+- Indent with two spaces
 
 
 #+BEGIN_SRC emacs-lisp
@@ -541,7 +542,8 @@ Use [[https://plantuml.com/][plantUML]] to draw diagrams.
     :init
     (setq plantuml-default-exec-mode 'executable
           plantuml-executable-path "plantuml"
-          plantuml-output-type "txt"))
+          plantuml-output-type "txt"
+          plantuml-indent-level 2))
 #+END_SRC
 * Appearance
 Use the =misterioso= theme
