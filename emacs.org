@@ -333,9 +333,7 @@ Will need paredit for all lisps.
 ** JavaScript
 Use a tab stop of 2.
 #+BEGIN_SRC emacs-lisp
-  (use-package js-mode
-    :config
-    (setq js-indent-level 2))
+  (setq js-indent-level 2)
 #+END_SRC
 
 ** Rust
