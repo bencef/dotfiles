@@ -341,7 +341,9 @@ Use =sbt= for building.
 #+BEGIN_SRC emacs-lisp
   (use-package sbt-mode
     :ensure t
-    :commands sbt-start sbt-hydra)
+    :commands sbt-start sbt-hydra
+    :config
+    (setq sbt:program-options '("-Dsbt.supershell=false")))
 #+END_SRC
 Add =scala-mode= and set up using the sbt hydra.
 #+BEGIN_SRC emacs-lisp
