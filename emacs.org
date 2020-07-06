@@ -350,6 +350,14 @@ Use a tab stop of 2.
    Look into how to set it up.
 
 * Other
+** Diary
+If there is a diary file present then display it on startup.
+Also set up a key binding for it.
+#+BEGIN_SRC emacs-lisp
+  (when (file-exists-p diary-file)
+    (diary)
+    (bind-key (kbd "C-c d") #'diary))
+#+END_SRC
 ** Rest client
 Add REST client mode
 #+BEGIN_SRC emacs-lisp
