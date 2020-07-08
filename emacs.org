@@ -514,9 +514,15 @@ Add ledger mode
 If there is a diary file present then display it on startup.
 Also set up a key binding for it.
 #+BEGIN_SRC emacs-lisp
-  (when (file-exists-p diary-file)
-    (diary)
-    (bind-key (kbd "C-c d") #'diary))
+  (cl-labels ((open-diary
+               ()
+               (interactive)
+               (diary)
+               (switch-to-buffer "diary")))
+
+    (when (file-exists-p diary-file)
+      (open-diary)
+      (bind-key (kbd "C-c d") #'open-diary)))
 #+END_SRC
 ** Rest client
 Add REST client mode
