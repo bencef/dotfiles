@@ -336,6 +336,12 @@ Use =utop= for having a toplevel.
   (use-package utop
     :ensure t)
 #+END_SRC
+** ReasonML
+Add reason mode for editing ReasonML files.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package reason-mode :ensure t)
+#+END_SRC
 ** Scala
 Use =sbt= for building.
 #+BEGIN_SRC emacs-lisp
