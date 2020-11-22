@@ -542,6 +542,12 @@ Enable markdown mode for markdown files.
     :config
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 #+END_SRC
+** YAML
+Enable YAML mode.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode :ensure t)
+#+END_SRC
 ** PlantUML
 Use [[https://plantuml.com/][plantUML]] to draw diagrams.
 
