@@ -384,6 +384,19 @@ Enable markdown mode for markdown files.
 #+END_SRC
 * Appearance
 Use the =tango-dark= theme
+** YAML
+Enable YAML mode.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode :ensure t)
+#+END_SRC
+** PlantUML
+Use [[https://plantuml.com/][plantUML]] to draw diagrams.
+
+- Use the local execuatable
+- Emit ascii art
+- Indent with two spaces
+
 #+BEGIN_SRC emacs-lisp
   (load-theme 'tango-dark t)
 #+END_SRC
