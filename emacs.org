@@ -494,9 +494,37 @@ After saving a file, run a static linter on it.
        :ensure t)
    #+END_SRC
 
-** TODO Language server protocol
+   [[https://github.com/rust-lang/rust-clippy][Clippy]] output in a new buffer.  TODO: Needs lots of refinement.
 
-   Look into how to set it up.
+   #+BEGIN_SRC emacs-lisp
+     (defun my/rust-clippy-diagnostics ()
+       (interactive)
+       (shell-command "cargo clippy" "*clippy*" "*clippy*")
+       (let ((curr-buf (buffer-name)))
+         (unwind-protect
+             (progn
+               (switch-to-buffer "*clippy*")
+               (compilation-mode))
+           (switch-to-buffer curr-buf))))
+
+     (bind-key (kbd "C-c C-c") #'my/rust-clippy-diagnostics 'rust-mode-map)
+   #+END_SRC
+
+** Language server protocol
+
+   Set up language server protocol with
+   - =C-c C-l= as the leading key
+   - no breadcrump at the top of the buffer
+   - no flymake
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package lsp-mode
+       :ensure t
+       :init (setq
+              lsp-keymap-prefix "C-c C-l"
+              lsp-headerline-breadcrumb-enable nil
+              lsp-diagnostics-provider :none))
+   #+END_SRC
 
 * Other
 ** Nix
