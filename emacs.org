@@ -98,6 +98,9 @@ Use =avy= to move around.  Use =M-g= as a leader which already has
 #+END_SRC
 *** Completion
 Use ivy/swiper/counsel for completion
+
+Use ivy for autocompletion of symbols.
+Use the minibuffer for autocompletion.
 #+BEGIN_SRC emacs-lisp :noweb yes
   (use-package counsel
     :ensure t
@@ -105,7 +108,12 @@ Use ivy/swiper/counsel for completion
            <<bindings>>
            )
     :init
-    (setq completing-read-function 'ivy-completing-read))
+    (setq completing-read-function 'ivy-completing-read
+          ;; next line deletes
+          ;; '(ivy-completion-in-region . ivy-display-function-overlay)
+          ;; which would do autocompletion at point
+          ivy-display-functions-alist '((t . nil))
+          completion-in-region-function 'ivy-completion-in-region))
 #+END_SRC
 Replace =isearch= with =swiper=
 #+BEGIN_SRC emacs-lisp :noweb-ref bindings :tangle no
@@ -434,15 +442,17 @@ If the tables are not loaded then load them.
     (unless *snippet-tables-loaded-p*
       (yas-reload-all)
       (setq *snippet-tables-loaded-p* t))
-    (yas-minor-mode))
+    (yas-minor-mode-on))
 #+END_SRC
 Add the package and hook.
+
+=lsp= mode needs =yas= for autocomletion of functions.
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet-snippets
     :ensure t
     :commands yas-reload-all
-    :init
-    (add-hook 'c-mode-common-hook #'load-snippets))
+    :hook ((c-mode-common . load-snippets)
+           (lsp-mode . yas-minor-mode-on)))
 #+END_SRC
 *** Java
 Add more snippets for Java.
