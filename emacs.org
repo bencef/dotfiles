@@ -500,10 +500,13 @@ After saving a file, run a static linter on it.
      (defun my/rust-clippy-diagnostics ()
        (interactive)
        (shell-command "cargo clippy" "*clippy*" "*clippy*")
-       (let ((curr-buf (buffer-name)))
+       (let ((curr-buf (buffer-name))
+             (root-dir (vc-root-dir)))
          (unwind-protect
              (progn
                (switch-to-buffer "*clippy*")
+               (when root-dir
+                 (setq default-directory root-dir))
                (compilation-mode))
            (switch-to-buffer curr-buf))))
 
