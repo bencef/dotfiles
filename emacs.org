@@ -360,7 +360,7 @@ Also set up a key binding for it.
                (diary)
                (switch-to-buffer "diary")))
 
-    (when (file-exists-p diary-file)
+    (when (and (boundp 'diary-file) (file-exists-p diary-file))
       (open-diary)
       (bind-key (kbd "C-c d") #'open-diary)))
 #+END_SRC
