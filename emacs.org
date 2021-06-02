@@ -224,7 +224,8 @@ Snippets taken from https://www.emacswiki.org/emacs/BackupDirectory
 
 Define a dir where emacs can put all the backups
 #+BEGIN_SRC emacs-lisp  :noweb tangle
-  (require 'cl)
+  (eval-when-compile
+    (require 'cl-lib))
 
   (let ((backup-dir "~/.backups/"))
     <<set-up-backups>>
@@ -251,7 +252,7 @@ Clean any backup that is older than a week
   (message "Deleting old backup files...")
   (let ((week (* 60 60 24 7))
         (current (float-time (current-time))))
-    (dolist (file (directory-files backup-dir t))
+    (cl-dolist (file (directory-files backup-dir t))
       (when (and (backup-file-name-p file)
                  (> (- current (float-time (fifth (file-attributes file))))
                     week))
