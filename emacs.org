@@ -290,6 +290,7 @@ from the default markdown mode =md=.
     :config
     (progn
       (require 'ox-md)
+      (require 'org-tempo)
       (org-export-define-derived-backend
        'md-backtick 'md
        :translate-alist '((src-block . my/md-backtick-src-block)))))
