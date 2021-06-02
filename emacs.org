@@ -242,7 +242,7 @@ Clean any backup that is older than a week
         (current (float-time (current-time))))
     (cl-dolist (file (directory-files backup-dir t))
       (when (and (backup-file-name-p file)
-                 (> (- current (float-time (fifth (file-attributes file))))
+                 (> (- current (float-time (cl-fifth (file-attributes file))))
                     week))
         (message "%s" file)
         (delete-file file))))
