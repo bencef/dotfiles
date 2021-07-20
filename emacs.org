@@ -161,7 +161,7 @@ Other ones still can be chosen with a universal argument (=C-u=).
 #+BEGIN_SRC emacs-lisp
   (setq default-input-method "latin-2-alt-postfix")
 #+END_SRC
-*** Wgrep
+*** Grep
     Use the WGrep package to be able to edit multiple files at once.
     A tipical case is editing _Ivy occur_ buffers.
 
@@ -169,6 +169,19 @@ Other ones still can be chosen with a universal argument (=C-u=).
       (use-package wgrep
         :ensure t)
     #+END_SRC
+
+    Use =ripgrep= for ~grep-find~ command.
+    #+begin_src emacs-lisp
+      (grep-apply-setting
+       'grep-find-command
+       (let ((starting-cursor-offset 27)
+             (command "rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)"))
+         `(,command . ,starting-cursor-offset)))
+    #+end_src
+
+    *TODO*:
+    - [ ] Calculate the offset.
+    - [ ] Check for availability of the =rg= executable.
 *** Multiple cursors
 Possibly use multiple cursors for editing.
 #+BEGIN_SRC emacs-lisp
