@@ -146,6 +146,10 @@ Delete trailing whitespace before saving.
 #+BEGIN_SRC emacs-lisp
   (add-hook 'before-save-hook #'delete-trailing-whitespace)
 #+END_SRC
+Don't create lock files.  I never needed it and it drives the nodejs file watcher crazy.
+#+begin_src emacs-lisp
+  (setq create-lockfiles nil)
+#+end_src
 *** Default multi-language input method
 Most of the time it is the easter european input for Hungarian / Polish.
 
