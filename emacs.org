@@ -587,7 +587,7 @@ Also set up a key binding for it.
 #+END_SRC
 Use the ISO format (year/month/day) for the diary
 #+BEGIN_SRC emacs-lisp
-  (setq calendar-date-style "iso")
+  (setq calendar-date-style 'iso)
 #+END_SRC
 ** Rest client
 Add REST client mode
