@@ -484,6 +484,11 @@ Use a tab stop of 2.
 #+BEGIN_SRC emacs-lisp
   (setq js-indent-level 2)
 #+END_SRC
+*** Typescript
+Use typescript mode
+#+begin_src emacs-lisp
+  (use-package typescript-mode :ensure t)
+#+end_src
 *** C++
 Use clang to format C++ buffers.
 #+BEGIN_SRC emacs-lisp
