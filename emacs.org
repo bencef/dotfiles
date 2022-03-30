@@ -571,23 +571,14 @@ Add ledger mode
     :config
     (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode)))
 #+END_SRC
-** Diary
-If there is a diary file present then display it on startup.
-Also set up a key binding for it.
-#+BEGIN_SRC emacs-lisp
-  (cl-labels ((open-diary
-               ()
-               (interactive)
-               (diary)
-               (switch-to-buffer "diary")))
-
-    (when (and (boundp 'diary-file) (file-exists-p diary-file))
-      (open-diary)
-      (bind-key (kbd "C-c d") #'open-diary)))
-#+END_SRC
-Use the ISO format (year/month/day) for the diary
+** Calendar and Diary
+Use the ISO format (year/month/day) for the diary.
 #+BEGIN_SRC emacs-lisp
   (setq calendar-date-style 'iso)
+#+END_SRC
+Set up =C-c c= as a key binding for the calendar.
+#+BEGIN_SRC emacs-lisp
+  (bind-key (kbd "C-c c") #'calendar)
 #+END_SRC
 ** Rest client
 Add REST client mode
