@@ -580,6 +580,16 @@ Set up =C-c c= as a key binding for the calendar.
 #+BEGIN_SRC emacs-lisp
   (bind-key (kbd "C-c c") #'calendar)
 #+END_SRC
+Set the starting buffer for frames to the calendar.
+#+BEGIN_SRC emacs-lisp
+  (setq initial-buffer-choice
+        #'(lambda ()
+            (let ((buf (get-buffer "*Calendar*")))
+              (if buf buf (progn
+                            (calendar)
+                            (diary-mark-entries 'redraw)
+                            (get-buffer "*Calendar*"))))))
+#+END_SRC
 ** Rest client
 Add REST client mode
 #+BEGIN_SRC emacs-lisp
