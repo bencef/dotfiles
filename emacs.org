@@ -363,6 +363,7 @@ Use a tab stop of 2.
 ** Calendar and Diary
 Use the ISO format (year/month/day) for the diary.
 #+BEGIN_SRC emacs-lisp
+  (autoload 'calendar-set-date-style "calendar")
   (calendar-set-date-style 'iso)
 #+END_SRC
 Set up =C-c c= as a key binding for the calendar.
