@@ -361,19 +361,24 @@ Use a tab stop of 2.
    Look into how to set it up.
 
 * Other
-** Diary
-If there is a diary file present then display it on startup.
-Also set up a key binding for it.
+** Calendar and Diary
+Use the ISO format (year/month/day) for the diary.
 #+BEGIN_SRC emacs-lisp
-  (cl-labels ((open-diary
-               ()
-               (interactive)
-               (diary)
-               (switch-to-buffer "diary")))
-
-    (when (and (boundp 'diary-file) (file-exists-p diary-file))
-      (open-diary)
-      (bind-key (kbd "C-c d") #'open-diary)))
+  (calendar-set-date-style 'iso)
+#+END_SRC
+Set up =C-c c= as a key binding for the calendar.
+#+BEGIN_SRC emacs-lisp
+  (bind-key (kbd "C-c c") #'calendar)
+#+END_SRC
+Set the starting buffer for frames to the calendar.
+#+BEGIN_SRC emacs-lisp
+  (setq initial-buffer-choice
+        #'(lambda ()
+            (let ((buf (get-buffer "*Calendar*")))
+              (if buf buf (progn
+                            (calendar)
+                            (diary-mark-entries 'redraw)
+                            (get-buffer "*Calendar*"))))))
 #+END_SRC
 ** Rest client
 Add REST client mode
