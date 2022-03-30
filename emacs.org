@@ -574,7 +574,7 @@ Add ledger mode
 ** Calendar and Diary
 Use the ISO format (year/month/day) for the diary.
 #+BEGIN_SRC emacs-lisp
-  (setq calendar-date-style 'iso)
+  (calendar-set-date-style 'iso)
 #+END_SRC
 Set up =C-c c= as a key binding for the calendar.
 #+BEGIN_SRC emacs-lisp
