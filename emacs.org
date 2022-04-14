@@ -1,5 +1,6 @@
 #+TITLE: Emacs config
 #+AUTHOR: Bence Fabian
+#+options: ':t ^:nil
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
 
 * Packages
