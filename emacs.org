@@ -217,7 +217,7 @@ Move files to trash on deletion
 #+BEGIN_SRC emacs-lisp
   (setq delete-by-moving-to-trash t)
 #+END_SRC
-Install `trashed` to manage the contents of the trash from emacs.
+Install =trashed= to manage the contents of the trash from emacs.
 #+begin_src emacs-lisp
   (use-package trashed
     :ensure t)
