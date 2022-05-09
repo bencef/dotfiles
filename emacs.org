@@ -416,11 +416,3 @@ Use [[https://plantuml.com/][plantUML]] to draw diagrams.
 #+BEGIN_SRC emacs-lisp
   (load-theme 'tango-dark t)
 #+END_SRC
-Use a bar for the cursor.  We are not in the 70s.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(cursor-type . bar))
-#+END_SRC
-Set default transparency for maximum hacker street cred.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(alpha . 85))
-#+END_SRC
