@@ -398,12 +398,6 @@ Enable markdown mode for markdown files.
     :config
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 #+END_SRC
-* Appearance
-Use the =misterioso= theme
-
-#+BEGIN_SRC emacs-lisp
-  (load-theme 'misterioso t)
-#+END_SRC
 ** YAML
 Enable YAML mode.
 
@@ -416,3 +410,10 @@ Use [[https://plantuml.com/][plantUML]] to draw diagrams.
 - Use the local execuatable
 - Emit ascii art
 - Indent with two spaces
+
+* Appearance
+Use the =misterioso= theme
+
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'misterioso t)
+#+END_SRC
