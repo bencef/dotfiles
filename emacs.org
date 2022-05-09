@@ -399,10 +399,10 @@ Enable markdown mode for markdown files.
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 #+END_SRC
 * Appearance
-Use the =tango-dark= theme
+Use the =misterioso= theme
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'tango-dark t)
+  (load-theme 'misterioso t)
 #+END_SRC
 ** YAML
 Enable YAML mode.
