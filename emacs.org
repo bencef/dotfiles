@@ -359,10 +359,13 @@ Use =tuareg= mode for OCaml files.
     :config
     (add-to-list 'auto-mode-alist '("\\.ml[yli]?\\'" . tuareg-mode)))
 #+END_SRC
-Use =utop= for having a toplevel.
+Use =utop= for having a toplevel.  Bind ~Meta+Tab~ to completion to be
+consistent with other modes.
 #+BEGIN_SRC emacs-lisp
   (use-package utop
-    :ensure t)
+    :ensure t
+    :bind (:map utop-mode-map
+                ("C-M-i" . utop-complete)))
 #+END_SRC
 ** .Net
 Add C# and F# mode.
