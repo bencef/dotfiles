@@ -373,11 +373,11 @@ Add C# and F# mode.
   (use-package fsharp-mode :ensure t)
   (use-package csharp-mode :ensure t)
 #+END_SRC
-** ReasonML
-Add reason mode for editing ReasonML files.
+** ReScript
+Add rescript mode for editing rescript files.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package reason-mode :ensure t)
+  (use-package rescript-mode :ensure t)
 #+END_SRC
 ** Scala
 Use =sbt= for building.
