@@ -424,6 +424,11 @@ Will need paredit for all lisps.
       (dolist (mode-hook lisp-mode-hooks)
         (add-hook mode-hook 'paredit-mode))))
 #+END_SRC
+*** Emacs lisp
+Reazon (a [[http://minikanren.org/][miniKanren]] for Emacs lisp) for logic programming.
+#+begin_src emacs-lisp
+  (use-package reazon :ensure t)
+#+end_src
 *** Common Lisp
 Set up slime for interactive editing.
 #+BEGIN_SRC emacs-lisp
