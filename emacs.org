@@ -352,6 +352,11 @@ Install magit and set =C-c g= to =magit-status=
            ("C-c b" . magit-blame)))
 #+END_SRC
 * Programming
+** TODO Workarounds
+Needed for ~lsp-java~ to not get "Wrong type argument"
+#+begin_src emacs-lisp
+  (setq-default c-basic-offset 4)
+#+end_src
 ** Haskell
 Install haskell-mode
 #+BEGIN_SRC emacs-lisp
@@ -502,6 +507,10 @@ Add more snippets for Java.
   (use-package java-snippets
     :ensure t)
 #+END_SRC
+Use the lsp package for Java
+#+begin_src emacs-lisp
+  (use-package lsp-java :ensure t)
+#+end_src
 *** JavaScript
 Use a tab stop of 2.
 #+BEGIN_SRC emacs-lisp
