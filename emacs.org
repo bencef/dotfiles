@@ -335,11 +335,16 @@ Will need paredit for all lisps.
                              ;; racket-mode-hook
                              scheme-mode-hook
                              slime-repl-mode-hook
-                             eval-expression-minibuffer-setup-hook
+                             ;; This stopped working
+                             ;; eval-expression-minibuffer-setup-hook
                              lisp-interaction-mode)))
       (dolist (mode-hook lisp-mode-hooks)
         (add-hook mode-hook 'paredit-mode))))
 #+END_SRC
+Add smart parens mode for minibuffer evaluation
+#+begin_src emacs-lisp
+  (add-hook 'eval-expression-minibuffer-setup-hook 'smartparens-mode)
+#+end_src
 ** JavaScript
 Use a tab stop of 2.
 #+BEGIN_SRC emacs-lisp
