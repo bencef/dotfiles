@@ -377,11 +377,16 @@ consistent with other modes.
                 ("C-M-i" . utop-complete)))
 #+END_SRC
 ** .Net
-Add C# and F# mode.
+Add F# mode.
 #+BEGIN_SRC emacs-lisp
   (use-package fsharp-mode :ensure t)
-  (use-package csharp-mode :ensure t)
 #+END_SRC
+C# mode is part of emacs starting with version 29
+so only add them on earlier versions.
+#+begin_src emacs-lisp
+  (when (< emacs-major-version 29)
+    (use-package csharp-mode :ensure t))
+#+end_src
 ** ReScript
 Add rescript mode for editing rescript files.
 
