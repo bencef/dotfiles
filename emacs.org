@@ -55,7 +55,8 @@ Disable menu, toolbar and scrollbars.
 Play nice with system clipboard.
 #+BEGIN_SRC emacs-lisp
   (setq save-interprogram-paste-before-kill t
-        mouse-yank-at-point t)
+        mouse-yank-at-point t
+        x-select-request-type 'text/plain\;charset=utf-8)
 #+END_SRC
 Show matching parens
 #+BEGIN_SRC emacs-lisp
