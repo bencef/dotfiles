@@ -52,6 +52,11 @@ Disable menu, toolbar and scrollbars.
   (when (fboundp 'horizontal-scroll-bar-mode)
     (horizontal-scroll-bar-mode -1))
 #+END_SRC
+Don't use the bell, thank you.
+#+BEGIN_SRC emacs-lisp
+  (setq visible-bell nil
+        ring-bell-function 'ignore)
+#+END_SRC
 Play nice with system clipboard.
 #+BEGIN_SRC emacs-lisp
   (setq save-interprogram-paste-before-kill t
