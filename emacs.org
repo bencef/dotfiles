@@ -520,7 +520,9 @@ Add more snippets for Java.
 #+END_SRC
 Use the lsp package for Java
 #+begin_src emacs-lisp
-  (use-package lsp-java :ensure t)
+  (use-package lsp-java
+    :ensure t
+    :after lsp)
 #+end_src
 *** JavaScript
 Use a tab stop of 2.
