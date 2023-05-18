@@ -593,6 +593,50 @@ After saving a file, run a static linter on it.
               lsp-diagnostics-provider :none))
    #+END_SRC
 
+** Tree-sitter
+If the version supports it then use [[https://tree-sitter.github.io/tree-sitter/][tree-sitter]].
+When the [[https://github.com/mickeynp/combobulate][combobulate]] git repo is present on the system then load it.
+#+begin_src emacs-lisp
+  (when (>= emacs-major-version 29)
+    (use-package treesit
+      :preface
+      ;; Optional, but recommended. Tree-sitter enabled major modes are
+      ;; distinct from their ordinary counterparts.
+      ;;
+      ;; You can remap major modes with `major-mode-remap-alist'.
+      ;; TODO: Note that this does *not* extend to hooks!
+      ;; Make sure you migrate them also
+      (dolist (mapping '((python-mode     . python-ts-mode)
+                         (css-mode        . css-ts-mode)
+                         ;; TODO differentiate TSX and and plain Typescript
+                         (typescript-mode . tsx-ts-mode)
+                         (js-mode         . js-ts-mode)
+                         (css-mode        . css-ts-mode)
+                         (html-mode       . html-ts-mode)
+                         (java-mode       . java-ts-mode)
+                         (csharp-mode     . csharp-ts-mode)
+                         (yaml-mode       . yaml-ts-mode)))
+        (add-to-list 'major-mode-remap-alist mapping))
+
+      :config
+      (when (file-exists-p "~/src/combobulate")
+          ;; Do not forget to customize Combobulate to your liking:
+          ;;
+          ;;  M-x customize-group RET combobulate RET
+          ;;
+          (use-package combobulate
+            ;; Optional, but recommended.
+            ;;
+            ;; You can manually enable Combobulate with `M-x
+            ;; combobulate-mode'.
+            :hook ((python-ts-mode . combobulate-mode)
+                   (js-ts-mode . combobulate-mode)
+                   (css-ts-mode . combobulate-mode)
+                   (yaml-ts-mode . combobulate-mode)
+                   (typescript-ts-mode . combobulate-mode)
+                   (tsx-ts-mode . combobulate-mode))
+            :load-path ("~/src/combobulate")))))
+#+end_src
 * Other
 ** Nix
 Use nix mode for editing [[https://nixos.org/][nix]] configuration files:
