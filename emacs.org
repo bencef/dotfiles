@@ -299,12 +299,12 @@ Use htmlize to add syntax highlighting to org exported code blocks.
 #+END_SRC
 ** Org Contrib
 Use org contrib packages.
-#+BEGIN_SRC emacs-lisp
-  (use-package org-contrib :ensure t)
-#+END_SRC
 Load the groff exporter
 #+BEGIN_SRC emacs-lisp
-  (require 'ox-groff)
+  (use-package org-contrib
+    :ensure t
+    :config
+    (require 'ox-groff))
 #+END_SRC
 ** Markdown export
 Make the markdown export use the backtick syntax for exporting code
