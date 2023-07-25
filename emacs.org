@@ -11,6 +11,12 @@ Disclaimer about editing the configuration.
   ;;;; Edit `emacs.org' and use `org-babel-tangle'
   ;;;; The default hotkey is C-c C-v t
 #+END_SRC
+** Environment optimalization
+Relax the =GC= treshold.
+#+begin_src emacs-lisp
+  (setq init/old-gc-treshold gc-cons-threshold
+        gc-cons-threshold most-positive-fixnum)
+#+end_src
 ** Set up package repositories
 - Require the functions to handle packages
 - Add repos to make available all packages
@@ -425,3 +431,8 @@ Use the =misterioso= theme
 #+BEGIN_SRC emacs-lisp
   (load-theme 'misterioso t)
 #+END_SRC
+* Prepare for interactive use
+Reset =GC= treshold
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold init/old-gc-treshold)
+#+end_src
