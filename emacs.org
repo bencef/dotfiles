@@ -142,7 +142,9 @@ Use counsel for entering unicode glyphs
 #+END_SRC
 Use ivy-hydra for different actions with =C-o=
 #+BEGIN_SRC emacs-lisp
-  (use-package ivy-hydra :ensure t)
+  (use-package ivy-hydra
+    :ensure t
+    :commands hydra-ivy/body)
 #+END_SRC
 ** Editing
 Indent with spaces.
@@ -174,11 +176,16 @@ Other ones still can be chosen with a universal argument (=C-u=).
 
     #+BEGIN_SRC emacs-lisp
       (use-package wgrep
-        :ensure t)
+        :ensure t
+        :commands wgrep-change-to-wgrep-mode)
     #+END_SRC
 
     Use =ripgrep= for ~grep-find~ command.
     #+begin_src emacs-lisp
+      ;;;; TODO: instead of doing this it might be more optimal to do an
+      ;;;; advice aroung `grep-find'.
+      (require 'grep)
+
       (grep-apply-setting
        'grep-find-command
        (let ((starting-cursor-offset 27)
@@ -228,7 +235,8 @@ Move files to trash on deletion
 Install =trashed= to manage the contents of the trash from emacs.
 #+begin_src emacs-lisp
   (use-package trashed
-    :ensure t)
+    :ensure t
+    :commands trashed)
 #+end_src
 Bind =C-x C-d= to =dired= instead of =list-directory=.
 #+BEGIN_SRC emacs-lisp
@@ -294,8 +302,12 @@ Save the auto-saves there too.
 #+END_SRC
 * Org
 Use htmlize to add syntax highlighting to org exported code blocks.
+Load it when ~htmlize-region~ is used as this is the function
+which is called ~org~'s =HTML= export.
 #+BEGIN_SRC emacs-lisp
-  (use-package htmlize :ensure t)
+  (use-package htmlize
+    :ensure t
+    :commands htmlize-region)
 #+END_SRC
 ** Org Contrib
 Use org contrib packages.
@@ -304,7 +316,8 @@ Load the groff exporter
   (use-package org-contrib
     :ensure t
     :config
-    (require 'ox-groff))
+    (require 'ox-groff)
+    :after org)
 #+END_SRC
 ** Markdown export
 Make the markdown export use the backtick syntax for exporting code
@@ -369,16 +382,14 @@ Install haskell-mode
 #+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
     :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode)))
+    :mode "\\.hs\\'")
 #+END_SRC
 ** OCaml
 Use =tuareg= mode for OCaml files.
 #+BEGIN_SRC emacs-lisp
   (use-package tuareg
     :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.ml[yli]?\\'" . tuareg-mode)))
+    :mode "\\.ml[yli]?\\'")
 #+END_SRC
 Use =utop= for having a toplevel.  Bind ~Meta+Tab~ to completion to be
 consistent with other modes.
@@ -391,7 +402,9 @@ consistent with other modes.
 ** .Net
 Add F# mode.
 #+BEGIN_SRC emacs-lisp
-  (use-package fsharp-mode :ensure t)
+  (use-package fsharp-mode
+    :ensure t
+    :mode "\\.fs\\'")
 #+END_SRC
 C# mode is part of emacs starting with version 29
 so only add them on earlier versions.
@@ -403,7 +416,9 @@ so only add them on earlier versions.
 Add rescript mode for editing rescript files.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package rescript-mode :ensure t)
+  (use-package rescript-mode
+    :ensure t
+    :mode "\\.res\\'")
 #+END_SRC
 ** Scala
 Use =sbt= for building.
@@ -449,13 +464,17 @@ Add smart parens mode for minibuffer evaluation
 *** Emacs lisp
 Reazon (a [[http://minikanren.org/][miniKanren]] for Emacs lisp) for logic programming.
 #+begin_src emacs-lisp
-  (use-package reazon :ensure t)
+  (use-package reazon
+    :ensure t
+    ;; will always require it before use
+    :defer t)
 #+end_src
 *** Common Lisp
 Set up slime for interactive editing.
 #+BEGIN_SRC emacs-lisp
   (use-package slime
     :ensure t
+    :commands inferior-slime-mode
     :init
     (setq inferior-lisp-program "sbcl"
           slime-contribs        '(slime-fancy))
@@ -468,6 +487,7 @@ Install clojure mode for editing clojure and boot files
 #+BEGIN_SRC emacs-lisp
   (use-package clojure-mode
     :ensure t
+    :commands (clojure-mode clojurescript-mode)
     :config
     (let ((associations '(("\\.\\(clj\\|boot\\)\\'" . clojure-mode)
                           ("\\.cljs\\'"       . clojurescript-mode))))
@@ -477,6 +497,7 @@ Install clojure mode for editing clojure and boot files
 Install cider for interactive development.
 #+BEGIN_SRC emacs-lisp
   (use-package cider
+    :commands cider-jack-in
     :ensure t)
 #+END_SRC
 ** C-like languages
@@ -484,6 +505,7 @@ Use smartparens
 #+BEGIN_SRC emacs-lisp
   (use-package smartparens
     :ensure t
+    :commands smartparens-mode
     :init
     (add-hook 'c-mode-common-hook #'smartparens-mode))
 #+END_SRC
@@ -517,7 +539,8 @@ Add the package and hook.
 Add more snippets for Java.
 #+BEGIN_SRC emacs-lisp
   (use-package java-snippets
-    :ensure t)
+    :ensure t
+    :after yasnippet-snippets)
 #+END_SRC
 Use the lsp package for Java
 #+begin_src emacs-lisp
@@ -533,7 +556,9 @@ Use a tab stop of 2.
 *** Typescript
 Use typescript mode
 #+begin_src emacs-lisp
-  (use-package typescript-mode :ensure t)
+  (use-package typescript-mode
+    :ensure t
+    :mode "\\.tsx?\\'")
 #+end_src
 *** C++
 Use clang to format C++ buffers.
@@ -587,6 +612,7 @@ After saving a file, run a static linter on it.
    #+BEGIN_SRC emacs-lisp
      (use-package lsp-mode
        :ensure t
+       :commands lsp
        :init (setq
               lsp-keymap-prefix "C-c C-l"
               lsp-headerline-breadcrumb-enable nil
@@ -642,28 +668,34 @@ When the [[https://github.com/mickeynp/combobulate][combobulate]] git repo is pr
 Use nix mode for editing [[https://nixos.org/][nix]] configuration files:
 #+BEGIN_SRC emacs-lisp
   (use-package nix-mode
-    :ensure t)
+    :ensure t
+    :mode "\\.nix\\'")
 #+END_SRC
 ** Presentations
 Use the [[https://github.com/howardabrams/demo-it/][demo-it]] package to do presentations from emacs.
 #+BEGIN_SRC emacs-lisp
-  (use-package demo-it :ensure t)
+  (use-package demo-it
+    :ensure t
+    :defer t)
 #+END_SRC
 It needs the =org-tree-slide= for presenting org files.
 #+BEGIN_SRC emacs-lisp
-  (use-package org-tree-slide :ensure t)
+  (use-package org-tree-slide
+    :ensure t
+    :after org)
 #+END_SRC
 ** Ledger
 Add ledger mode
 #+BEGIN_SRC emacs-lisp
   (use-package ledger-mode
     :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode)))
+    :mode "\\.ledger\\'")
 #+END_SRC
 ** Calendar and Diary
 Use the ISO format (year/month/day) for the diary.
 #+BEGIN_SRC emacs-lisp
+  (require 'calendar)
+
   (calendar-set-date-style 'iso)
 #+END_SRC
 Set up =C-c c= as a key binding for the calendar.
@@ -683,7 +715,9 @@ Set the starting buffer for frames to the calendar.
 ** Rest client
 Add REST client mode
 #+BEGIN_SRC emacs-lisp
-  (use-package restclient :ensure t)
+  (use-package restclient
+    :ensure t
+    :commands restclient-mode)
 #+END_SRC
 ** Artist mode
 Bind =artist-mode= to =C-c a=.
@@ -695,14 +729,15 @@ Enable markdown mode for markdown files.
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+    :mode "\\.md\\'")
 #+END_SRC
 ** YAML
 Enable YAML mode.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package yaml-mode :ensure t)
+  (use-package yaml-mode
+    :ensure t
+    :mode "\\.ya?ml\\'")
 #+END_SRC
 ** PlantUML
 Use [[https://plantuml.com/][plantUML]] to draw diagrams.
@@ -715,6 +750,7 @@ Use [[https://plantuml.com/][plantUML]] to draw diagrams.
 #+BEGIN_SRC emacs-lisp
   (use-package plantuml-mode
     :ensure t
+    :commands plantuml-mode
     :init
     (setq plantuml-default-exec-mode 'executable
           plantuml-executable-path "plantuml"
