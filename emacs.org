@@ -419,13 +419,6 @@ Enable YAML mode.
     :ensure t
     :mode "\\.ya?ml\\'")
 #+END_SRC
-** PlantUML
-Use [[https://plantuml.com/][plantUML]] to draw diagrams.
-
-- Use the local execuatable
-- Emit ascii art
-- Indent with two spaces
-
 * Appearance
 Use the =misterioso= theme
 
