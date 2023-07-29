@@ -131,7 +131,9 @@ Use counsel for entering unicode glyphs
 #+END_SRC
 Use ivy-hydra for different actions with =C-o=
 #+BEGIN_SRC emacs-lisp
-  (use-package ivy-hydra :ensure t)
+  (use-package ivy-hydra
+    :ensure t
+    :commands hydra-ivy/body)
 #+END_SRC
 ** Editing
 Indent with spaces.
@@ -196,7 +198,8 @@ Move files to trash on deletion
 Install `trashed` to manage the contents of the trash from emacs.
 #+begin_src emacs-lisp
   (use-package trashed
-    :ensure t)
+    :ensure t
+    :commands trashed)
 #+end_src
 Bind =C-x C-d= to =dired= instead of =list-directory=.
 #+BEGIN_SRC emacs-lisp
@@ -267,7 +270,9 @@ Save the auto-saves there too.
 * Org
 Use htmlize to add syntax highlighting to org exported code blocks.
 #+BEGIN_SRC emacs-lisp
-  (use-package htmlize :ensure t)
+  (use-package htmlize
+    :ensure t
+    :commands htmlize-region)
 #+END_SRC
 ** Markdown export
 Make the markdown export use the backtick syntax for exporting code
@@ -358,7 +363,8 @@ Use a tab stop of 2.
 
    #+BEGIN_SRC emacs-lisp
      (use-package rust-mode
-       :ensure t)
+       :ensure t
+       :mode "\\.rs\\'")
    #+END_SRC
 
 ** TODO Language server protocol
@@ -389,7 +395,9 @@ Set the starting buffer for frames to the calendar.
 ** Rest client
 Add REST client mode
 #+BEGIN_SRC emacs-lisp
-  (use-package restclient :ensure t)
+  (use-package restclient
+    :ensure t
+    :commands restclient-mode)
 #+END_SRC
 ** Artist mode
 Bind =artist-mode= to =C-c a=.
@@ -401,14 +409,15 @@ Enable markdown mode for markdown files.
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+    :mode "\\.md\\'")
 #+END_SRC
 ** YAML
 Enable YAML mode.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package yaml-mode :ensure t)
+  (use-package yaml-mode
+    :ensure t
+    :mode "\\.ya?ml\\'")
 #+END_SRC
 ** PlantUML
 Use [[https://plantuml.com/][plantUML]] to draw diagrams.
