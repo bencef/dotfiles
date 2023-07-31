@@ -448,6 +448,7 @@ Will need paredit for all lisps.
 #+BEGIN_SRC emacs-lisp
   (use-package paredit
     :ensure t
+    :mode ((rx "dune" (? "-project") eos) . paredit-mode)
     :commands enable-paredit-mode
     :init
     (let ((lisp-mode-hooks '(emacs-lisp-mode-hook
