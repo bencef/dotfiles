@@ -765,10 +765,15 @@ Use [[https://plantuml.com/][plantUML]] to draw diagrams.
           plantuml-indent-level 2))
 #+END_SRC
 * Appearance
-Use the =misterioso= theme
+Use the =misterioso= theme on older versions
+and the =modus-operandi= themes on newer versions.
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'misterioso t)
-  (enable-theme 'misterioso)
+  (let ((theme (cond
+                ((< emacs-major-version 28) 'misterioso)
+                ((< emacs-major-version 30) 'modus-operandi)
+                (t                          'modus-operandi-tinted))))
+    (load-theme theme t)
+    (enable-theme theme))
 #+END_SRC
 Use the [[https://rubjo.github.io/victor-mono/][Victor mono]] fonts.
 #+BEGIN_SRC emacs-lisp
