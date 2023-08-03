@@ -720,6 +720,22 @@ Set the starting buffer for frames to the calendar.
                             (diary-mark-entries 'redraw)
                             (get-buffer "*Calendar*"))))))
 #+END_SRC
+** Cron tasks
+Use my =at= program from my [[https://github.com/bencef/bin][utility repository]] if available.
+#+begin_src emacs-lisp
+  (when (executable-find "at")
+    (defun my/at (time action)
+      "Perform `action' at a give time point.
+
+  `action' is a command understandable by the `exec' system call.
+  `time' is anything understandable by the `date(1)' command.
+
+  Returns the buffer representing the background process."
+      (let* ((command (car (string-split action " ")))
+             (buffer (format "*cron-%s-%s*" command time))
+             (script (format "at %s -- %s" time action)))
+        (async-shell-command script buffer))))
+#+end_src
 ** Rest client
 Add REST client mode
 #+BEGIN_SRC emacs-lisp
