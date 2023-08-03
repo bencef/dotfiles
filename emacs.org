@@ -110,6 +110,7 @@ Use ivy/swiper/counsel for completion
     :bind (
            <<bindings>>
            )
+    :commands ivy-completing-read
     :init
     (setq completing-read-function 'ivy-completing-read))
 #+END_SRC
