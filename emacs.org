@@ -113,6 +113,7 @@ Use the minibuffer for autocompletion.
 #+BEGIN_SRC emacs-lisp :noweb yes
   (use-package counsel
     :ensure t
+    :commands (ivy-completing-read ivy-completion-in-region)
     :bind (
            <<bindings>>
            )
