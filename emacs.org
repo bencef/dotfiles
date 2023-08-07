@@ -178,6 +178,38 @@ Possibly use multiple cursors for editing.
            ("C-c m n" . mc/insert-numbers)               ;; Numbers
            ))
 #+END_SRC
+*** Underlining headings
+Functions for writing undelinings symbols for section headings in text files.
+
+Code lifted from [[https://www.emacswiki.org/emacs/UnderlineWith][emacs wiki]] originally by user [[https://www.emacswiki.org/emacs/KragenJavierSitaker][KragenJavierSitaker]].
+
+#+begin_src emacs-lisp
+  (defun my/underline-line-with (char)
+    (save-excursion
+      (let ((length (- (point-at-eol) (point-at-bol))))
+        (end-of-line)
+        (insert "\n")
+        (insert (make-string length char)))))
+
+  (defun my/underline-with-dash ()
+    (interactive)
+    (my/underline-line-with ?-))
+
+  (defun my/underline-with-equal ()
+    (interactive)
+    (my/underline-line-with ?=))
+
+  (defun my/underline-with-degree ()
+    (interactive)
+    (my/underline-line-with ?°))
+
+  (bind-keys
+   :prefix "C-c _"
+   :prefix-map my/underline-prefix-map
+   ("-" . my/underline-with-dash)
+   ("=" . my/underline-with-equal)
+   ("o" . my/underline-with-degree))
+#+end_src
 *** Chromium edit with emacs
 Set up the emacs side of the [[https://github.com/stsquad/emacs_chrome][Edit with emacs]] chrome/ium plugin.
 
