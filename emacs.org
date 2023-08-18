@@ -443,7 +443,10 @@ Add F# mode.
 #+BEGIN_SRC emacs-lisp
   (use-package fsharp-mode
     :ensure t
-    :mode "\\.fs\\'")
+    :mode "\\.fs\\'"
+    :config
+    (setq lsp-fsharp-use-dotnet-tool-for-fsac nil
+          lsp-fsharp-external-autocomplete t))
 #+END_SRC
 C# mode is part of emacs starting with version 29
 so only add them on earlier versions.
