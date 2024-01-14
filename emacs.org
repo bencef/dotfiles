@@ -675,7 +675,7 @@ When the [[https://github.com/mickeynp/combobulate][combobulate]] git repo is pr
 #+begin_src emacs-lisp
   (when (>= emacs-major-version 29)
     (use-package treesit
-      :preface
+      :config
       ;; Optional, but recommended. Tree-sitter enabled major modes are
       ;; distinct from their ordinary counterparts.
       ;;
@@ -694,7 +694,6 @@ When the [[https://github.com/mickeynp/combobulate][combobulate]] git repo is pr
                          (yaml-mode       . yaml-ts-mode)))
         (add-to-list 'major-mode-remap-alist mapping))
 
-      :config
       (when (file-exists-p "~/src/combobulate")
           ;; Do not forget to customize Combobulate to your liking:
           ;;
