@@ -186,7 +186,7 @@ Code lifted from [[https://www.emacswiki.org/emacs/UnderlineWith][emacs wiki]] o
 #+begin_src emacs-lisp
   (defun my/underline-line-with (char)
     (save-excursion
-      (let ((length (- (point-at-eol) (point-at-bol))))
+      (let ((length (- (line-end-position) (line-beginning-position))))
         (end-of-line)
         (insert "\n")
         (insert (make-string length char)))))
