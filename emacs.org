@@ -688,7 +688,6 @@ When the [[https://github.com/mickeynp/combobulate][combobulate]] git repo is pr
                          (typescript-mode . tsx-ts-mode)
                          (js-mode         . js-ts-mode)
                          (css-mode        . css-ts-mode)
-                         (html-mode       . html-ts-mode)
                          (java-mode       . java-ts-mode)
                          (csharp-mode     . csharp-ts-mode)
                          (yaml-mode       . yaml-ts-mode)))
