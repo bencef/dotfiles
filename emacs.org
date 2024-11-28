@@ -343,6 +343,18 @@ Save the auto-saves there too.
   (setq auto-save-list-file-prefix
         backup-dir)
 #+END_SRC
+** Music
+Use EMMS for listening to music
+#+BEGIN_SRC emacs-lisp
+  (use-package emms
+    :ensure t
+    :commands (emms-add-dired emms-start emms-streams emms-play-url)
+    :config
+    (progn
+      (emms-all)
+      (setq emms-player-list '(emms-player-mpv)
+            emms-info-functions '(emms-info-native))))
+#+END_SRC
 * Org
 Use htmlize to add syntax highlighting to org exported code blocks.
 Load it when ~htmlize-region~ is used as this is the function
