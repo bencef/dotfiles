@@ -263,6 +263,10 @@ then start the edit server.
 #+END_SRC
 ** File handling
 *** Dired
+Show sizes in a human-readable way.
+#+BEGIN_SRC emacs-lisp
+  (setq dired-listing-switches "-alh")
+#+END_SRC
 Enable changing the buffer to the visited file by pressing =a=.
 #+BEGIN_SRC emacs-lisp
   (put 'dired-find-alternate-file 'disabled nil)
