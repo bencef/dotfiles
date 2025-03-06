@@ -444,7 +444,8 @@ Use =tuareg= mode for OCaml files.
 #+BEGIN_SRC emacs-lisp
   (use-package tuareg
     :ensure t
-    :mode ("\\.ml[yli]?\\'" . tuareg-mode))
+    :mode ("\\.ml[li]?\\'" . tuareg-mode)
+    :mode ("\\.mly\\'"     . tuareg-menhir-mode))
 #+END_SRC
 Use =utop= for having a toplevel.  Bind ~Meta+Tab~ to completion to be
 consistent with other modes.
