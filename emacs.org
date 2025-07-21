@@ -693,7 +693,7 @@ Install *kubernetes* mode and documentation retrieval
 #+begin_src emacs-lisp
   (use-package k8s-mode
     :ensure t
-    :command k8s-mode)
+    :commands k8s-mode)
 
   (use-package kubedoc
     :ensure t
