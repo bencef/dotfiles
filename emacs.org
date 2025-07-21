@@ -668,6 +668,51 @@ After saving a file, run a static linter on it.
                    ("C-c C-c" . rust-run-clippy)
                    ("C-M-q"   . lsp-format-buffer)))
    #+END_SRC
+** Infrastructure
+
+*** Terraform
+
+Install *terraform* mode and documentation retrieval
+
+#+begin_src emacs-lisp
+  (use-package terraform-mode
+    :ensure t
+    :mode "\\.tf\\'")
+
+  (use-package terraform-doc
+    :ensure t
+    :after terraform-mode
+    :bind (:map terraform-mode-map
+                ("C-c h" . terraform-doc)))
+#+end_src
+
+*** Kubernetes
+
+Install *kubernetes* mode and documentation retrieval
+
+#+begin_src emacs-lisp
+  (use-package k8s-mode
+    :ensure t
+    :command k8s-mode)
+
+  (use-package kubedoc
+    :ensure t
+    :after k8s-mode
+    :bind (:map k8s-mode-map
+                ("C-c h" . kubedoc)))
+#+end_src
+
+Install magit-like porcelain for kubernetes
+
+#+begin_src emacs-lisp
+  (use-package kubernetes
+    :ensure t
+    :commands (kubernetes-overview)
+    :bind (("C-c k" . kubernetes-overview))
+    :config
+    (setq kubernetes-poll-frequency 3600
+          kubernetes-redraw-frequency 3600))
+#+end_src
 
 ** Language server protocol
 
