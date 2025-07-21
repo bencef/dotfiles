@@ -203,6 +203,18 @@ Other ones still can be chosen with a universal argument (=C-u=).
     *TODO*:
     - [ ] Calculate the offset.
     - [ ] Check for availability of the =rg= executable.
+*** JSON
+
+Use the counsel version of [[https://jqlang.org/manual/][jq]] to see results live.
+
+#+begin_src emacs-lisp
+  (use-package counsel-jq
+    :ensure t
+    :commands counsel-jq
+    :config
+    (setq counsel-jq-json-buffer-mode 'json-ts-mode))
+#+end_src
+
 *** Multiple cursors
 Possibly use multiple cursors for editing.
 #+BEGIN_SRC emacs-lisp
