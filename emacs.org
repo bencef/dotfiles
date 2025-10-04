@@ -366,6 +366,22 @@ Install magit and set =C-c g= to =magit-status=
            ("C-c b" . magit-blame)))
 #+END_SRC
 * Programming
+** OCaml
+Use =tuareg= mode for OCaml files.
+#+BEGIN_SRC emacs-lisp
+  (use-package tuareg
+    :ensure t
+    :mode ("\\.ml[li]?\\'" . tuareg-mode)
+    :mode ("\\.mly\\'"     . tuareg-menhir-mode))
+#+END_SRC
+Use =utop= for having a toplevel.  Bind ~Meta+Tab~ to completion to be
+consistent with other modes.
+#+BEGIN_SRC emacs-lisp
+  (use-package utop
+    :ensure t
+    :bind (:map utop-mode-map
+                ("C-M-i" . utop-complete)))
+#+END_SRC
 ** Lisp
 Will need paredit for all lisps.
 #+BEGIN_SRC emacs-lisp
