@@ -227,6 +227,21 @@ Possibly use multiple cursors for editing.
            ("C-c m n" . mc/insert-numbers)               ;; Numbers
            ))
 #+END_SRC
+*** Combobulate
+Use [[https://github.com/mickeynp/combobulate][combobulate]] for structured editing with treesitter.
+#+BEGIN_SRC emacs-lisp
+  (when (file-exists-p "~/lib/emacs/combobulate")
+    (use-package combobulate
+      :custom
+      ;; You can customize Combobulate's key prefix here.
+      ;; Note that you may have to restart Emacs for this to take effect!
+      (combobulate-key-prefix "C-c o")
+      (combobulate-cursor-tool 'multiple-cursors)
+      :hook ((prog-mode . combobulate-mode))
+      ;; Amend this to the directory where you keep Combobulate's source
+      ;; code.
+      :load-path ("~/lib/emacs/combobulate")))
+#+END_SRC
 *** Underlining headings
 Functions for writing undelinings symbols for section headings in text files.
 
