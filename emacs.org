@@ -910,6 +910,11 @@ Bind =artist-mode= to =C-c a=.
 #+BEGIN_SRC emacs-lisp
   (bind-key (kbd "C-c a") #'artist-mode global-map)
 #+END_SRC
+** Re-builder
+Use the =rx= macro sytnax.
+#+BEGIN_SRC emacs-lisp
+  (setq reb-re-syntax 'rx)
+#+END_SRC
 ** Markdown
 Enable markdown mode for markdown files.
 #+BEGIN_SRC emacs-lisp
