@@ -654,6 +654,23 @@ Use typescript mode
     :ensure t
     :mode "\\.tsx?\\'")
 #+end_src
+
+Use the correct indentation for typescript
+
+#+begin_src emacs-lisp
+  ;TODO: Where to put this?
+  (setf (alist-get 'tsx-ts-mode lsp--formatting-indent-alist) 'typescript-ts-mode-indent-offset)
+#+end_src
+*** Emmet
+Use emmet mode for =HTML=, =JSX=, and =TSX= files.
+#+begin_src emacs-lisp
+  (use-package emmet-mode
+    :mode (rx (: "." (or "tsx" "jsx" (: "htm" (? "l"))) eos))
+    :ensure t
+    :config
+    (add-to-list 'emmet-jsx-major-modes 'tsx-ts-mode)
+    (setq emmet-move-cursor-between-quotes t))
+#+end_src
 *** C++
 Use clang to format C++ buffers.
 #+BEGIN_SRC emacs-lisp
