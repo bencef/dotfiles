@@ -660,7 +660,10 @@ Use typescript mode
 Use emmet mode for =HTML=, =JSX=, and =TSX= files.
 #+begin_src emacs-lisp
   (use-package emmet-mode
-    :mode (rx (: "." (or "tsx" "jsx" (: "htm" (? "l"))) eos))
+    :hook ((tsx-ts-mode  . emmet-mode)
+           (js-jsx-mode  . emmet-mode)
+           (js-ts-mode   . emmet-mode)
+           (html-ts-mode . emmet-mode))
     :ensure t
     :config
     (add-to-list 'emmet-jsx-major-modes 'tsx-ts-mode)
