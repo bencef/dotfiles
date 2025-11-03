@@ -6,7 +6,7 @@
 * Packages
 Disclaimer about editing the configuration.
 #+BEGIN_SRC emacs-lisp
-  ;;;; init. el
+  ;;;; init. el    -*- lexical-binding: t -*-
   ;;;;
   ;;;; This is a generated file. DO NOT EDIT IT.
   ;;;; Edit `emacs.org' and use `org-babel-tangle'
