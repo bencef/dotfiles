@@ -654,36 +654,6 @@ Use emmet mode for =HTML=, =JSX=, and =TSX= files.
     (add-to-list 'emmet-jsx-major-modes 'tsx-ts-mode)
     (setq emmet-move-cursor-between-quotes t))
 #+end_src
-*** C++
-Use clang to format C++ buffers.
-#+BEGIN_SRC emacs-lisp
-  (defun c++format ()
-    "Format a c++ buffer using clang-format."
-    (interactive)
-    (shell-command-on-region
-     (point-min) (point-max)
-     "clang-format" nil 'replace))
-#+END_SRC
-Bind it to =M-q=
-And add it to =before-save-hook=.
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'c++-mode-hook
-            #'(lambda ()
-                (local-set-key (kbd "M-q") #'c++format)
-                (add-hook 'before-save-hook #'c++format nil 'make-it-local)))
-#+END_SRC
-After saving a file, run a static linter on it.
-#+BEGIN_SRC emacs-lisp
-  (defun c++lint ()
-    "Run external linter tool on a file."
-    (interactive)
-    (when buffer-file-name
-      (shell-command (concat "c++lint " buffer-file-name))))
-
-  (add-hook 'c++-mode-hook
-            #'(lambda ()
-                (add-hook 'after-save-hook #'c++lint nil 'make-it-local)))
-#+END_SRC
 ** Rust
 
    Add rust mode.  Binding clippy to =C-c C-c= and reformatting to =C-M-q=.
@@ -692,8 +662,7 @@ After saving a file, run a static linter on it.
      (use-package rust-mode
        :ensure t
        :bind (:map rust-mode-map
-                   ("C-c C-c" . rust-run-clippy)
-                   ("C-M-q"   . lsp-format-buffer)))
+                   ("C-c C-c" . rust-run-clippy)))
    #+END_SRC
 ** Infrastructure
 
