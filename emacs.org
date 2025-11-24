@@ -771,6 +771,16 @@ When the [[https://github.com/mickeynp/combobulate][combobulate]] git repo is pr
           :load-path ("~/lib/emacs/combobulate")))))
 #+end_src
 * Other
+** Shells
+If =vterm= is available then amend it to use a prefix argument to read buffer name
+#+begin_src emacs-lisp
+  (when (fboundp 'vterm)
+    (define-advice vterm (:around (old-fn prefix) "buffer-name")
+      (interactive "P\n")
+      (if (null prefix) (funcall old-fn)
+        (let ((buf-name (read-string "Buffer name: " nil nil "*vterm*" 'inherit-input)))
+          (funcall old-fn buf-name)))))
+#+end_src
 ** Nix
 Use nix mode for editing [[https://nixos.org/][nix]] configuration files:
 #+BEGIN_SRC emacs-lisp
