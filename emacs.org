@@ -79,6 +79,22 @@ Enable narrowing
 #+BEGIN_SRC emacs-lisp
   (put 'narrow-to-region 'disabled nil)
 #+END_SRC
+
+Add to emacs search path.
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/lib/emacs/")
+#+END_SRC
+*** Edit server
+Start an edit server for each instance and set up the editor environment variable
+#+begin_src emacs-lisp
+  (setq server-name
+        (format "server-%d" (emacs-pid)))
+
+  (server-start)
+
+  (setenv "EDITOR"
+          (format "emacsclient -s %s" server-name))
+#+end_src
 *** Moving around
 Use =ace-window= for window navigation instead of =other-window=.
 #+BEGIN_SRC emacs-lisp
@@ -213,17 +229,6 @@ Code lifted from [[https://www.emacswiki.org/emacs/UnderlineWith][emacs wiki]] o
 *** Chromium edit with emacs
 Set up the emacs side of the [[https://github.com/stsquad/emacs_chrome][Edit with emacs]] chrome/ium plugin.
 
-Add to emacs search path.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path "~/lib/emacs/")
-#+END_SRC
-If emacs is running in daemon mode and the library is downloaded,
-then start the edit server.
-#+BEGIN_SRC emacs-lisp
-  (when (and (daemonp) (locate-library "edit-server"))
-    (require 'edit-server)
-    (edit-server-start))
-#+END_SRC
 ** File handling
 *** Dired
 Enable changing the buffer to the visited file by pressing =a=.
