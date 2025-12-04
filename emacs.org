@@ -163,6 +163,10 @@ Use counsel for entering unicode glyphs
 #+BEGIN_SRC emacs-lisp :noweb-ref bindings :tangle no
   ("C-c u" . counsel-unicode-char)
 #+END_SRC
+Use =counsel-git-grep= instead of =project-find-regexp=
+#+BEGIN_SRC emacs-lisp :noweb-ref bindings :tangle no
+  ("C-x p g" . counsel-git-grep)
+#+END_SRC
 Use ivy-hydra for different actions with =C-o=
 #+BEGIN_SRC emacs-lisp
   (use-package ivy-hydra
