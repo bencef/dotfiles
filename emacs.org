@@ -662,7 +662,7 @@ Use emmet mode for =HTML=, =JSX=, and =TSX= files.
 #+end_src
 ** Rust
 
-   Add rust mode.  Binding clippy to =C-c C-c= and reformatting to =C-M-q=.
+   Add rust mode.  Binding clippy to =C-c C-c=.
 
    #+BEGIN_SRC emacs-lisp
      (use-package rust-mode
