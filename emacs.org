@@ -933,7 +933,7 @@ and the =modus-operandi= themes on newer versions.
 #+END_SRC
 Use the [[https://rubjo.github.io/victor-mono/][Victor mono]] fonts.
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(font . "Victor Mono Medium-10"))
+  (add-to-list 'default-frame-alist '(font . "Victor Mono Medium-12"))
 #+END_SRC
 Use ligatures if available.
 #+begin_src emacs-lisp
