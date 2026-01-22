@@ -279,9 +279,6 @@ Code lifted from [[https://www.emacswiki.org/emacs/UnderlineWith][emacs wiki]] o
    ("=" . my/underline-with-equal)
    ("o" . my/underline-with-degree))
 #+end_src
-*** Chromium edit with emacs
-Set up the emacs side of the [[https://github.com/stsquad/emacs_chrome][Edit with emacs]] chrome/ium plugin.
-
 ** File handling
 *** Dired
 Show sizes in a human-readable way.
