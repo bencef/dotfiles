@@ -885,11 +885,14 @@ Use the =rx= macro sytnax.
   (setq reb-re-syntax 'rx)
 #+END_SRC
 ** Markdown
-Enable markdown mode for markdown files.
+Enable markdown mode for markdown files.  Use =multimarkdown= if available.
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
-    :mode "\\.md\\'")
+    :mode "\\.md\\'"
+    :config
+    (when (executable-find "multimarkdown")
+      (setq markdown-command "multimarkdown")))
 #+END_SRC
 ** YAML
 Enable YAML mode.
