@@ -820,6 +820,7 @@ Use the ISO format (year/month/day) for the diary.
   (require 'calendar)
 
   (calendar-set-date-style 'iso)
+  (setq diary-date-insertion-form '((format "%4s-%02d-%02d" year (read month) (read day))))
 #+END_SRC
 Set up =C-c c= as a key binding for the calendar.
 #+BEGIN_SRC emacs-lisp
