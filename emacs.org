@@ -458,20 +458,22 @@ Install haskell-mode
     :mode "\\.hs\\'")
 #+END_SRC
 ** OCaml
-Use =tuareg= mode for OCaml files.
-#+BEGIN_SRC emacs-lisp
-  (use-package tuareg
+Use the [[https://neocaml.org/][neocaml]] toolchain with eglot.
+
+#+begin_src emacs-lisp
+  (use-package neocaml
     :ensure t
-    :mode ("\\.ml[li]?\\'" . tuareg-mode)
-    :mode ("\\.mly\\'"     . tuareg-menhir-mode))
-#+END_SRC
-Use =utop= for having a toplevel.  Bind ~Meta+Tab~ to completion to be
-consistent with other modes.
-#+BEGIN_SRC emacs-lisp
-  (use-package utop
+    :hook
+    (neocaml-base-mode . neocaml-repl-minor-mode))
+
+  (use-package ocaml-eglot
     :ensure t
-    :bind (:map utop-mode-map
-                ("C-M-i" . utop-complete)))
+    :hook
+    (neocaml-base-mode . ocaml-eglot)
+    (ocaml-eglot . eglot-ensure))
+#+end_src
+
+TODO: find out how to get utop to work
 #+END_SRC
 ** .Net
 Add F# mode.
