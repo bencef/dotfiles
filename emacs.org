@@ -445,11 +445,6 @@ Install magit and set =C-c g= to =magit-status= and =C-c b= to =magit-blame=.
            ("C-c b" . magit-blame)))
 #+END_SRC
 * Programming
-** TODO Workarounds
-Needed for ~lsp-java~ to not get "Wrong type argument"
-#+begin_src emacs-lisp
-  (setq-default c-basic-offset 4)
-#+end_src
 ** Haskell
 Install haskell-mode
 #+BEGIN_SRC emacs-lisp
@@ -469,8 +464,8 @@ Use the [[https://neocaml.org/][neocaml]] toolchain with eglot.
   (use-package ocaml-eglot
     :ensure t
     :hook
-    (neocaml-base-mode . ocaml-eglot)
-    (ocaml-eglot . eglot-ensure))
+    (neocaml-base-mode . ocaml-eglot-mode)
+    (ocaml-eglot-mode  . eglot-ensure))
 #+end_src
 
 TODO: find out how to get utop to work
@@ -480,10 +475,7 @@ Add F# mode.
 #+BEGIN_SRC emacs-lisp
   (use-package fsharp-mode
     :ensure t
-    :mode "\\.fs\\'"
-    :config
-    (setq lsp-fsharp-use-dotnet-tool-for-fsac nil
-          lsp-fsharp-external-autocomplete t))
+    :mode "\\.fs\\'")
 #+END_SRC
 C# mode is part of emacs starting with version 29
 so only add them on earlier versions.
@@ -614,13 +606,11 @@ If the tables are not loaded then load them.
 #+END_SRC
 Add the package and hook.
 
-=lsp= mode needs =yas= for autocomletion of functions.
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet-snippets
     :ensure t
     :commands yas-reload-all
-    :hook ((c-mode-common . load-snippets)
-           (lsp-mode . yas-minor-mode-on)))
+    :hook ((c-mode-common . load-snippets)))
 #+END_SRC
 *** Java
 Add more snippets for Java.
@@ -629,12 +619,6 @@ Add more snippets for Java.
     :ensure t
     :after yasnippet-snippets)
 #+END_SRC
-Use the lsp package for Java
-#+begin_src emacs-lisp
-  (use-package lsp-java
-    :ensure t
-    :after lsp)
-#+end_src
 *** JavaScript
 Use a tab stop of 2.
 #+BEGIN_SRC emacs-lisp
@@ -645,8 +629,6 @@ Use typescript mode
 #+begin_src emacs-lisp
   (use-package typescript-mode
     :ensure t
-    :config
-    (setf (alist-get 'tsx-ts-mode lsp--formatting-indent-alist) 'typescript-ts-mode-indent-offset)
     :mode "\\.tsx?\\'")
 #+end_src
 *** Emmet
@@ -720,20 +702,40 @@ Install magit-like porcelain for kubernetes
 
 ** Language server protocol
 
-   Set up language server protocol with
-   - =C-c C-l= as the leading key
-   - no breadcrump at the top of the buffer
-   - no flymake
+Use eglot since it is a part of emacs.
 
-   #+BEGIN_SRC emacs-lisp
-     (use-package lsp-mode
-       :ensure t
-       :commands lsp
-       :init (setq
-              lsp-keymap-prefix "C-c C-l"
-              lsp-headerline-breadcrumb-enable nil
-              lsp-diagnostics-provider :none))
-   #+END_SRC
+Add a hydra with the most common commands.
+
+#+begin_src emacs-lisp
+  (with-eval-after-load 'eglot
+    (defhydra hydra-eglot (:hint nil :color teal)
+      "
+  ^Actions^        ^Format^         ^Refactor^     ^Diagnostics
+  ^^^^^^^^-------------------------------------------------------
+  _aa_ actions     _ff_ format      _rr_ rename    _dd_ buffer
+  _ao_ imports     _fb_ buffer      ^  ^           _dD_ project
+  _aq_ quickfix    ^  ^             ^  ^           _dn_ next
+  _ae_ extract     ^  ^             ^  ^           _dp_ prev
+  _ai_ inline
+  -------------------------------------------------------
+  _q_ quit
+  "
+      ("aa" eglot-code-actions)
+      ("ao" eglot-code-action-organize-imports)
+      ("aq" eglot-code-action-quickfix)
+      ("ae" eglot-code-action-extract)
+      ("ai" eglot-code-action-inline)
+      ("ff" eglot-format)
+      ("fb" eglot-format-buffer)
+      ("rr" eglot-rename)
+      ("dd" flymake-show-buffer-diagnostics)
+      ("dD" flymake-show-project-diagnostics)
+      ("dn" flymake-goto-next-error :exit nil)
+      ("dp" flymake-goto-prev-error :exit nil)
+      ("q"  nil :color blue))
+
+    (define-key eglot-mode-map (kbd "C-c e") #'hydra-eglot/body))
+#+end_src
 
 ** Tree-sitter
 If the version supports it then use [[https://tree-sitter.github.io/tree-sitter/][tree-sitter]].
