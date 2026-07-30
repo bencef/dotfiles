@@ -308,6 +308,13 @@ mode.
 #+BEGIN_SRC emacs-lisp
   (setq dired-dwim-target t)
 #+END_SRC
+Associate external programs to for opening files:
+- PDF files: mupdf
+#+begin_src emacs-lisp
+  (with-eval-after-load 'dired
+    (add-to-list 'dired-guess-shell-alist-user
+                 `(,(rx (: "." (| "pdf" "cbz") eos)) "mupdf")))
+#+end_src
 *** TRAMP
 Make =ssh= the default connection method.
 #+BEGIN_SRC emacs-lisp
