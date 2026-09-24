@@ -706,7 +706,14 @@ Install magit-like porcelain for kubernetes
     (setq kubernetes-poll-frequency 3600
           kubernetes-redraw-frequency 3600))
 #+end_src
+** Direnv
 
+Use [[https://direnv.net/][direnv]].  But don't turn it on by default.
+
+#+begin_src emacs-lisp
+  (use-package direnv
+    :ensure t)
+#+end_src
 ** Language server protocol
 
 Use eglot since it is a part of emacs.
