@@ -262,6 +262,10 @@ mode.
 #+BEGIN_SRC emacs-lisp
   (setq dired-dwim-target t)
 #+END_SRC
+Bind =find-file-at-point= to =C-c f=.
+#+BEGIN_SRC emacs-lisp
+  (bind-key (kbd "C-c f") #'find-file-at-point)
+#+END_SRC
 *** TRAMP
 Make =ssh= the default connection method.
 #+BEGIN_SRC emacs-lisp
